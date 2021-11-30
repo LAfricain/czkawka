@@ -73,7 +73,7 @@ jobs:
         run: rm '/usr/local/bin/2to3'
 
       - name: Install GTK3
-        run: brew install rust gtk+3
+        run: brew install rust gtk4
 
       - name: Build GUI Debug
         run: cargo build --bin czkawka_gui
