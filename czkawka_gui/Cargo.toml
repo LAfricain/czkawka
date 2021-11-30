@@ -43,8 +43,8 @@ fs_extra = "1.2.0"
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.9", features = ["combaseapi", "objbase", "shobjidl_core", "windef", "winerror", "wtypesbase", "winuser"] }
 
-[dependencies.gtk]
-version = "0.14.3"
+[dependencies.gtk4]
+version = "0.3.1"
 default-features = false # just in case
-features = ["v3_24_9"]
+features = ["v4_4"]
 

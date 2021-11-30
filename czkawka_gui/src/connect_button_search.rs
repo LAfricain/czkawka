@@ -3,8 +3,9 @@ use std::sync::Arc;
 use std::thread;
 
 use glib::Sender;
-use gtk::prelude::*;
-use gtk::WindowPosition;
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
 use img_hash::{FilterType, HashAlg};
 
 use czkawka_core::big_file::BigFile;
@@ -65,11 +66,11 @@ pub fn connect_button_search(
     let entry_similar_images_maximal_size = gui_data.main_notebook.entry_similar_images_maximal_size.clone();
     let entry_similar_videos_minimal_size = gui_data.main_notebook.entry_similar_videos_minimal_size.clone();
     let entry_similar_videos_maximal_size = gui_data.main_notebook.entry_similar_videos_maximal_size.clone();
-    let check_button_music_title: gtk::CheckButton = gui_data.main_notebook.check_button_music_title.clone();
-    let check_button_music_artist: gtk::CheckButton = gui_data.main_notebook.check_button_music_artist.clone();
-    let check_button_music_album_title: gtk::CheckButton = gui_data.main_notebook.check_button_music_album_title.clone();
-    let check_button_music_album_artist: gtk::CheckButton = gui_data.main_notebook.check_button_music_album_artist.clone();
-    let check_button_music_year: gtk::CheckButton = gui_data.main_notebook.check_button_music_year.clone();
+    let check_button_music_title: gtk4::CheckButton = gui_data.main_notebook.check_button_music_title.clone();
+    let check_button_music_artist: gtk4::CheckButton = gui_data.main_notebook.check_button_music_artist.clone();
+    let check_button_music_album_title: gtk4::CheckButton = gui_data.main_notebook.check_button_music_album_title.clone();
+    let check_button_music_album_artist: gtk4::CheckButton = gui_data.main_notebook.check_button_music_album_artist.clone();
+    let check_button_music_year: gtk4::CheckButton = gui_data.main_notebook.check_button_music_year.clone();
     let shared_buttons = gui_data.shared_buttons.clone();
     let tree_view_empty_folder_finder = gui_data.main_notebook.tree_view_empty_folder_finder.clone();
     let tree_view_empty_files_finder = gui_data.main_notebook.tree_view_empty_files_finder.clone();
@@ -132,7 +133,6 @@ pub fn connect_button_search(
         entry_info.set_text("Searching data, it may take a while, please wait...");
 
         // Set dialog to center to current screen(it is impossible to center it to main window)
-        window_progress.set_position(WindowPosition::Center);
 
         // Resets progress bars
         progress_bar_all_stages.set_fraction(0 as f64);
@@ -146,8 +146,7 @@ pub fn connect_button_search(
         match to_notebook_main_enum(notebook_main.current_page().unwrap()) {
             NotebookMainEnum::Duplicate => {
                 label_stage.show();
-                grid_progress_stages.show_all();
-                window_progress.resize(1, 1);
+                grid_progress_stages.show();
 
                 get_list_store(&tree_view_duplicate_finder).clear();
 
@@ -203,7 +202,6 @@ pub fn connect_button_search(
             NotebookMainEnum::EmptyFiles => {
                 label_stage.show();
                 grid_progress_stages.hide();
-                window_progress.resize(1, 1);
 
                 get_list_store(&tree_view_empty_files_finder).clear();
 
@@ -224,7 +222,6 @@ pub fn connect_button_search(
             NotebookMainEnum::EmptyDirectories => {
                 label_stage.show();
                 grid_progress_stages.hide();
-                window_progress.resize(1, 1);
 
                 get_list_store(&tree_view_empty_folder_finder).clear();
 
@@ -242,7 +239,6 @@ pub fn connect_button_search(
             NotebookMainEnum::BigFiles => {
                 label_stage.show();
                 grid_progress_stages.hide();
-                window_progress.resize(1, 1);
 
                 get_list_store(&tree_view_big_files_finder).clear();
 
@@ -265,7 +261,6 @@ pub fn connect_button_search(
             NotebookMainEnum::Temporary => {
                 label_stage.show();
                 grid_progress_stages.hide();
-                window_progress.resize(1, 1);
 
                 get_list_store(&tree_view_temporary_files_finder).clear();
 
@@ -286,8 +281,7 @@ pub fn connect_button_search(
                 image_preview_similar_images.hide();
 
                 label_stage.show();
-                grid_progress_stages.show_all();
-                window_progress.resize(1, 1);
+                grid_progress_stages.show();
 
                 get_list_store(&tree_view_similar_images_finder).clear();
 
@@ -362,8 +356,7 @@ pub fn connect_button_search(
             }
             NotebookMainEnum::SimilarVideos => {
                 label_stage.show();
-                grid_progress_stages.show_all();
-                window_progress.resize(1, 1);
+                grid_progress_stages.show();
 
                 get_list_store(&tree_view_similar_videos_finder).clear();
 
@@ -394,8 +387,7 @@ pub fn connect_button_search(
             }
             NotebookMainEnum::SameMusic => {
                 label_stage.show();
-                grid_progress_stages.show_all();
-                window_progress.resize(1, 1);
+                grid_progress_stages.show();
 
                 get_list_store(&tree_view_same_music_finder).clear();
 
@@ -446,7 +438,6 @@ pub fn connect_button_search(
             NotebookMainEnum::Symlinks => {
                 label_stage.show();
                 grid_progress_stages.hide();
-                window_progress.resize(1, 1);
 
                 get_list_store(&tree_view_invalid_symlinks).clear();
 
@@ -466,7 +457,6 @@ pub fn connect_button_search(
             NotebookMainEnum::BrokenFiles => {
                 label_stage.show();
                 grid_progress_stages.show();
-                window_progress.resize(1, 1);
 
                 get_list_store(&tree_view_broken_files).clear();
 

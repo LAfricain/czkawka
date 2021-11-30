@@ -3,7 +3,9 @@
 #![allow(clippy::collapsible_else_if)]
 #![allow(clippy::too_many_arguments)]
 
-use gtk::prelude::*;
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
 
 use czkawka_core::*;
 
@@ -69,7 +71,7 @@ mod taskbar_progress_win;
 mod tests;
 
 fn main() {
-    let application = gtk::Application::builder().application_id("com.github.qarmin").build();
+    let application = gtk4::Application::builder().application_id("com.github.qarmin").build();
     application.connect_activate(|application| {
         let mut gui_data: GuiData = GuiData::new_with_application(application);
 
@@ -144,7 +146,7 @@ fn main() {
 
         let window_main = gui_data.window_main.clone();
         let taskbar_state = gui_data.taskbar_state.clone();
-        window_main.connect_delete_event(move |_, _| {
+        window_main.connect_close_request(move |_| {
             save_configuration(false, &gui_data.upper_notebook, &gui_data.settings, &gui_data.text_view_errors); // Save configuration at exit
             taskbar_state.borrow_mut().release();
             Inhibit(false)

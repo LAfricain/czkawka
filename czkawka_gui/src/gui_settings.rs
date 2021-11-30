@@ -1,42 +1,44 @@
-use gtk::prelude::*;
-use gtk::{Builder, Window};
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
+use gtk4::{Builder, Window};
 
 #[derive(Clone)]
 pub struct GuiSettings {
-    pub window_settings: gtk::Window,
+    pub window_settings: gtk4::Window,
 
     // General
-    pub check_button_settings_save_at_exit: gtk::CheckButton,
-    pub check_button_settings_load_at_start: gtk::CheckButton,
-    pub check_button_settings_confirm_deletion: gtk::CheckButton,
-    pub check_button_settings_confirm_group_deletion: gtk::CheckButton,
-    pub check_button_settings_show_text_view: gtk::CheckButton,
-    pub check_button_settings_use_cache: gtk::CheckButton,
-    pub check_button_settings_use_trash: gtk::CheckButton,
+    pub check_button_settings_save_at_exit: gtk4::CheckButton,
+    pub check_button_settings_load_at_start: gtk4::CheckButton,
+    pub check_button_settings_confirm_deletion: gtk4::CheckButton,
+    pub check_button_settings_confirm_group_deletion: gtk4::CheckButton,
+    pub check_button_settings_show_text_view: gtk4::CheckButton,
+    pub check_button_settings_use_cache: gtk4::CheckButton,
+    pub check_button_settings_use_trash: gtk4::CheckButton,
 
     // Duplicates
-    pub check_button_settings_hide_hard_links: gtk::CheckButton,
-    pub entry_settings_cache_file_minimal_size: gtk::Entry,
-    pub check_button_settings_show_preview_duplicates: gtk::CheckButton,
-    pub check_button_settings_duplicates_delete_outdated_cache: gtk::CheckButton,
-    pub button_settings_duplicates_clear_cache: gtk::Button,
+    pub check_button_settings_hide_hard_links: gtk4::CheckButton,
+    pub entry_settings_cache_file_minimal_size: gtk4::Entry,
+    pub check_button_settings_show_preview_duplicates: gtk4::CheckButton,
+    pub check_button_settings_duplicates_delete_outdated_cache: gtk4::CheckButton,
+    pub button_settings_duplicates_clear_cache: gtk4::Button,
 
     // Similar Images
-    pub check_button_settings_show_preview_similar_images: gtk::CheckButton,
-    pub check_button_settings_similar_images_delete_outdated_cache: gtk::CheckButton,
-    pub button_settings_similar_images_clear_cache: gtk::Button,
+    pub check_button_settings_show_preview_similar_images: gtk4::CheckButton,
+    pub check_button_settings_similar_images_delete_outdated_cache: gtk4::CheckButton,
+    pub button_settings_similar_images_clear_cache: gtk4::Button,
 
     // Similar Videos
-    pub check_button_settings_similar_videos_delete_outdated_cache: gtk::CheckButton,
-    pub button_settings_similar_videos_clear_cache: gtk::Button,
+    pub check_button_settings_similar_videos_delete_outdated_cache: gtk4::CheckButton,
+    pub button_settings_similar_videos_clear_cache: gtk4::Button,
 
     // Buttons
-    pub button_settings_save_configuration: gtk::Button,
-    pub button_settings_load_configuration: gtk::Button,
-    pub button_settings_reset_configuration: gtk::Button,
+    pub button_settings_save_configuration: gtk4::Button,
+    pub button_settings_load_configuration: gtk4::Button,
+    pub button_settings_reset_configuration: gtk4::Button,
 
-    pub button_settings_open_cache_folder: gtk::Button,
-    pub button_settings_open_settings_folder: gtk::Button,
+    pub button_settings_open_cache_folder: gtk4::Button,
+    pub button_settings_open_settings_folder: gtk4::Button,
 }
 
 impl GuiSettings {
@@ -44,18 +46,18 @@ impl GuiSettings {
         let glade_src = include_str!("../ui/settings.glade").to_string();
         let builder = Builder::from_string(glade_src.as_str());
 
-        let window_settings: gtk::Window = builder.object("window_settings").unwrap();
+        let window_settings: gtk4::Window = builder.object("window_settings").unwrap();
         window_settings.set_modal(true);
         window_settings.set_transient_for(Some(window_main));
 
         // General
-        let check_button_settings_save_at_exit: gtk::CheckButton = builder.object("check_button_settings_save_at_exit").unwrap();
-        let check_button_settings_load_at_start: gtk::CheckButton = builder.object("check_button_settings_load_at_start").unwrap();
-        let check_button_settings_confirm_deletion: gtk::CheckButton = builder.object("check_button_settings_confirm_deletion").unwrap();
-        let check_button_settings_confirm_group_deletion: gtk::CheckButton = builder.object("check_button_settings_confirm_group_deletion").unwrap();
-        let check_button_settings_show_text_view: gtk::CheckButton = builder.object("check_button_settings_show_text_view").unwrap();
-        let check_button_settings_use_cache: gtk::CheckButton = builder.object("check_button_settings_use_cache").unwrap();
-        let check_button_settings_use_trash: gtk::CheckButton = builder.object("check_button_settings_use_trash").unwrap();
+        let check_button_settings_save_at_exit: gtk4::CheckButton = builder.object("check_button_settings_save_at_exit").unwrap();
+        let check_button_settings_load_at_start: gtk4::CheckButton = builder.object("check_button_settings_load_at_start").unwrap();
+        let check_button_settings_confirm_deletion: gtk4::CheckButton = builder.object("check_button_settings_confirm_deletion").unwrap();
+        let check_button_settings_confirm_group_deletion: gtk4::CheckButton = builder.object("check_button_settings_confirm_group_deletion").unwrap();
+        let check_button_settings_show_text_view: gtk4::CheckButton = builder.object("check_button_settings_show_text_view").unwrap();
+        let check_button_settings_use_cache: gtk4::CheckButton = builder.object("check_button_settings_use_cache").unwrap();
+        let check_button_settings_use_trash: gtk4::CheckButton = builder.object("check_button_settings_use_trash").unwrap();
 
         check_button_settings_save_at_exit.set_tooltip_text(Some("Saves configuration to file when closing app."));
         check_button_settings_load_at_start.set_tooltip_text(Some("Loading at start configuration from file.\n\nNot selecting this option will load default settings."));
@@ -66,11 +68,11 @@ impl GuiSettings {
         check_button_settings_use_trash.set_tooltip_text(Some("When enabled it moves files to trash instead deleting them permanently."));
 
         // Duplicates
-        let check_button_settings_hide_hard_links: gtk::CheckButton = builder.object("check_button_settings_hide_hard_links").unwrap();
-        let entry_settings_cache_file_minimal_size: gtk::Entry = builder.object("entry_settings_cache_file_minimal_size").unwrap();
-        let check_button_settings_show_preview_duplicates: gtk::CheckButton = builder.object("check_button_settings_show_preview_duplicates").unwrap();
-        let check_button_settings_duplicates_delete_outdated_cache: gtk::CheckButton = builder.object("check_button_settings_duplicates_delete_outdated_cache").unwrap();
-        let button_settings_duplicates_clear_cache: gtk::Button = builder.object("button_settings_duplicates_clear_cache").unwrap();
+        let check_button_settings_hide_hard_links: gtk4::CheckButton = builder.object("check_button_settings_hide_hard_links").unwrap();
+        let entry_settings_cache_file_minimal_size: gtk4::Entry = builder.object("entry_settings_cache_file_minimal_size").unwrap();
+        let check_button_settings_show_preview_duplicates: gtk4::CheckButton = builder.object("check_button_settings_show_preview_duplicates").unwrap();
+        let check_button_settings_duplicates_delete_outdated_cache: gtk4::CheckButton = builder.object("check_button_settings_duplicates_delete_outdated_cache").unwrap();
+        let button_settings_duplicates_clear_cache: gtk4::Button = builder.object("button_settings_duplicates_clear_cache").unwrap();
 
         check_button_settings_hide_hard_links.set_tooltip_text(Some(
             "Hides all files except one, if are points to same data(are hardlinked).\n\nE.g. in case where on disk there is 7 files which are hardlinked to specific data and one different file with same data but different inode, then in duplicate finder will be visible only one unique file and one file from hardlinked ones.",
@@ -83,32 +85,32 @@ impl GuiSettings {
         button_settings_duplicates_clear_cache.set_tooltip_text(Some("Manually clear cache from outdated entries.\nShould be used only if automatic clearing was disabled."));
 
         // Similar Images
-        let check_button_settings_show_preview_similar_images: gtk::CheckButton = builder.object("check_button_settings_show_preview_similar_images").unwrap();
-        let check_button_settings_similar_images_delete_outdated_cache: gtk::CheckButton = builder.object("check_button_settings_similar_images_delete_outdated_cache").unwrap();
-        let button_settings_similar_images_clear_cache: gtk::Button = builder.object("button_settings_similar_images_clear_cache").unwrap();
+        let check_button_settings_show_preview_similar_images: gtk4::CheckButton = builder.object("check_button_settings_show_preview_similar_images").unwrap();
+        let check_button_settings_similar_images_delete_outdated_cache: gtk4::CheckButton = builder.object("check_button_settings_similar_images_delete_outdated_cache").unwrap();
+        let button_settings_similar_images_clear_cache: gtk4::Button = builder.object("button_settings_similar_images_clear_cache").unwrap();
 
         check_button_settings_show_preview_similar_images.set_tooltip_text(Some("Shows preview at right side, when selecting image file."));
         check_button_settings_similar_images_delete_outdated_cache.set_tooltip_text(Some("Allows to delete outdated cache results which points to non-existent files.\n\nWhen enabled, app make sure when loading records, that all points to valid files and ignore broken ones.\n\nDisabling this option, will help to scan files on external drives, so cache entries about them will not be purged in next scan.\n\nIn case of having hundred of thousands records in cache, it is suggested to enable this option, to speedup cache loading and saving at start and end of scan."));
         button_settings_similar_images_clear_cache.set_tooltip_text(Some("Manually clear cache from outdated entries.\nShould be used only if automatic clearing was disabled."));
 
         // Similar Videos
-        let check_button_settings_similar_videos_delete_outdated_cache: gtk::CheckButton = builder.object("check_button_settings_similar_videos_delete_outdated_cache").unwrap();
-        let button_settings_similar_videos_clear_cache: gtk::Button = builder.object("button_settings_similar_videos_clear_cache").unwrap();
+        let check_button_settings_similar_videos_delete_outdated_cache: gtk4::CheckButton = builder.object("check_button_settings_similar_videos_delete_outdated_cache").unwrap();
+        let button_settings_similar_videos_clear_cache: gtk4::Button = builder.object("button_settings_similar_videos_clear_cache").unwrap();
 
         check_button_settings_similar_videos_delete_outdated_cache.set_tooltip_text(Some("Allows to delete outdated cache results which points to non-existent files.\n\nWhen enabled, app make sure when loading records, that all points to valid files and ignore broken ones.\n\nDisabling this option, will help to scan files on external drives, so cache entries about them will not be purged in next scan.\n\nIn case of having hundred of thousands records in cache, it is suggested to enable this option, to speedup cache loading and saving at start and end of scan."));
         button_settings_similar_videos_clear_cache.set_tooltip_text(Some("Manually clear cache from outdated entries.\nShould be used only if automatic clearing was disabled."));
 
         // Saving/Loading/Resetting configuration
-        let button_settings_save_configuration: gtk::Button = builder.object("button_settings_save_configuration").unwrap();
-        let button_settings_load_configuration: gtk::Button = builder.object("button_settings_load_configuration").unwrap();
-        let button_settings_reset_configuration: gtk::Button = builder.object("button_settings_reset_configuration").unwrap();
+        let button_settings_save_configuration: gtk4::Button = builder.object("button_settings_save_configuration").unwrap();
+        let button_settings_load_configuration: gtk4::Button = builder.object("button_settings_load_configuration").unwrap();
+        let button_settings_reset_configuration: gtk4::Button = builder.object("button_settings_reset_configuration").unwrap();
 
         button_settings_save_configuration.set_tooltip_text(Some("Save current settings configuration to file."));
         button_settings_load_configuration.set_tooltip_text(Some("Load settings from file and replace current configuration with them."));
         button_settings_reset_configuration.set_tooltip_text(Some("Reset current configuration to default one."));
 
-        let button_settings_open_cache_folder: gtk::Button = builder.object("button_settings_open_cache_folder").unwrap();
-        let button_settings_open_settings_folder: gtk::Button = builder.object("button_settings_open_settings_folder").unwrap();
+        let button_settings_open_cache_folder: gtk4::Button = builder.object("button_settings_open_cache_folder").unwrap();
+        let button_settings_open_settings_folder: gtk4::Button = builder.object("button_settings_open_settings_folder").unwrap();
 
         button_settings_open_cache_folder.set_tooltip_text(Some(
             "Opens folder where are stored txt files with cache.\n\nModifying them may cause to show invalid results but also modifying e.g. path may save time when moving big amount of files to different place.\n\nYou can copy this files between computers to save time on scanning again for files(of course if they have similar directory structure).\n\nIn case of problems with cache, this files can be removed, so app will automatically regenerate them.",

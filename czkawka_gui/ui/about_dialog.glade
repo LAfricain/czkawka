@@ -51,7 +51,7 @@ This program is free to use and will always be.
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
-          <object class="GtkButtonBox">
+          <object class="GtkBox">
             <property name="can-focus">False</property>
             <property name="layout-style">end</property>
             <child>

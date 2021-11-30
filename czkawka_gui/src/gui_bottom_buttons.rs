@@ -1,29 +1,31 @@
-use gtk::prelude::*;
-use gtk::Button;
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Button;
+use gtk4::Inhibit;
 
 #[derive(Clone)]
 pub struct GuiBottomButtons {
-    pub buttons_search: gtk::Button,
-    pub buttons_select: gtk::Button,
-    pub buttons_delete: gtk::Button,
-    pub buttons_save: gtk::Button,
-    pub buttons_symlink: gtk::Button,
-    pub buttons_hardlink: gtk::Button,
-    pub buttons_move: gtk::Button,
-    pub buttons_show_errors: gtk::Button,
+    pub buttons_search: gtk4::Button,
+    pub buttons_select: gtk4::Button,
+    pub buttons_delete: gtk4::Button,
+    pub buttons_save: gtk4::Button,
+    pub buttons_symlink: gtk4::Button,
+    pub buttons_hardlink: gtk4::Button,
+    pub buttons_move: gtk4::Button,
+    pub buttons_show_errors: gtk4::Button,
     pub buttons_names: [String; 7],
     pub buttons_array: [Button; 7],
 }
 
 impl GuiBottomButtons {
-    pub fn create_from_builder(builder: &gtk::Builder) -> Self {
-        let buttons_search: gtk::Button = builder.object("buttons_search").unwrap();
-        let buttons_select: gtk::Button = builder.object("buttons_select").unwrap();
-        let buttons_delete: gtk::Button = builder.object("buttons_delete").unwrap();
-        let buttons_save: gtk::Button = builder.object("buttons_save").unwrap();
-        let buttons_symlink: gtk::Button = builder.object("buttons_symlink").unwrap();
-        let buttons_hardlink: gtk::Button = builder.object("buttons_hardlink").unwrap();
-        let buttons_move: gtk::Button = builder.object("buttons_move").unwrap();
+    pub fn create_from_builder(builder: &gtk4::Builder) -> Self {
+        let buttons_search: gtk4::Button = builder.object("buttons_search").unwrap();
+        let buttons_select: gtk4::Button = builder.object("buttons_select").unwrap();
+        let buttons_delete: gtk4::Button = builder.object("buttons_delete").unwrap();
+        let buttons_save: gtk4::Button = builder.object("buttons_save").unwrap();
+        let buttons_symlink: gtk4::Button = builder.object("buttons_symlink").unwrap();
+        let buttons_hardlink: gtk4::Button = builder.object("buttons_hardlink").unwrap();
+        let buttons_move: gtk4::Button = builder.object("buttons_move").unwrap();
 
         buttons_search.set_tooltip_text(Some("Start to search for files/folders"));
         buttons_select.set_tooltip_text(Some("Selects records\nOnly selected files/folders can be later processed."));
@@ -37,7 +39,7 @@ impl GuiBottomButtons {
             "Moves files to chosen folder\nIt copy all files to folder without preserving directory tree\nWhen trying to move 2 files with identical name to folder, second will fail and show error",
         ));
 
-        let buttons_show_errors: gtk::Button = builder.object("buttons_show_errors").unwrap();
+        let buttons_show_errors: gtk4::Button = builder.object("buttons_show_errors").unwrap();
         buttons_show_errors.set_tooltip_text(Some("Show/Hide bottom error panel"));
 
         let buttons_names = [

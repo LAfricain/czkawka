@@ -1,8 +1,10 @@
 use std::fs;
 use std::path::PathBuf;
 
-use gtk::prelude::*;
-use gtk::{TextView, TreeIter, TreePath};
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
+use gtk4::{TextView, TreeIter, TreePath};
 
 use czkawka_core::duplicate::make_hard_link;
 
@@ -70,7 +72,7 @@ pub fn connect_button_hardlink_symlink(gui_data: &GuiData) {
     });
 }
 
-pub fn hardlink_symlink(tree_view: &gtk::TreeView, column_file_name: i32, column_path: i32, column_color: i32, column_selection: i32, hardlinking: bool, text_view_errors: &TextView) {
+pub fn hardlink_symlink(tree_view: &gtk4::TreeView, column_file_name: i32, column_path: i32, column_color: i32, column_selection: i32, hardlinking: bool, text_view_errors: &TextView) {
     reset_text_view(text_view_errors);
 
     let model = get_list_store(tree_view);
@@ -91,9 +93,9 @@ pub fn hardlink_symlink(tree_view: &gtk::TreeView, column_file_name: i32, column
     let mut selected_rows = Vec::new();
     if let Some(iter) = model.iter_first() {
         loop {
-            if model.value(&iter, column_selection).get::<bool>().unwrap() {
-                if model.value(&iter, column_color).get::<String>().unwrap() == MAIN_ROW_COLOR {
-                    selected_rows.push(model.path(&iter).unwrap());
+            if model.get(&iter, column_selection).get::<bool>().unwrap() {
+                if model.get(&iter, column_color).get::<String>().unwrap() == MAIN_ROW_COLOR {
+                    selected_rows.push(model.path(&iter));
                 } else {
                     panic!("Header row shouldn't be selected, please report bug.");
                 }
@@ -111,7 +113,7 @@ pub fn hardlink_symlink(tree_view: &gtk::TreeView, column_file_name: i32, column
     let mut current_symhardlink_data: Option<SymHardlinkData> = None;
     let mut current_selected_index = 0;
     loop {
-        if model.value(&current_iter, column_color).get::<String>().unwrap() == HEADER_ROW_COLOR {
+        if model.get(&current_iter, column_color).get::<String>().unwrap() == HEADER_ROW_COLOR {
             if let Some(current_symhardlink_data) = current_symhardlink_data {
                 if !current_symhardlink_data.files_to_symhardlink.is_empty() {
                     vec_symhardlink_data.push(current_symhardlink_data);
@@ -125,13 +127,13 @@ pub fn hardlink_symlink(tree_view: &gtk::TreeView, column_file_name: i32, column
             continue;
         }
 
-        if model.path(&current_iter).unwrap() == selected_rows[current_selected_index] {
-            let file_name = model.value(&current_iter, column_file_name).get::<String>().unwrap();
-            let path = model.value(&current_iter, column_path).get::<String>().unwrap();
+        if model.path(&current_iter) == selected_rows[current_selected_index] {
+            let file_name = model.get(&current_iter, column_file_name).get::<String>().unwrap();
+            let path = model.get(&current_iter, column_path).get::<String>().unwrap();
             let full_file_path = format!("{}/{}", path, file_name);
 
             if current_symhardlink_data.is_some() {
-                vec_tree_path_to_remove.push(model.path(&current_iter).unwrap());
+                vec_tree_path_to_remove.push(model.path(&current_iter));
                 let mut temp_data = current_symhardlink_data.unwrap();
                 temp_data.files_to_symhardlink.push(full_file_path);
                 current_symhardlink_data = Some(temp_data);

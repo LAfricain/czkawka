@@ -4,8 +4,10 @@ use std::path::Path;
 use std::{env, fs};
 
 use directories_next::ProjectDirs;
-use gtk::prelude::*;
-use gtk::{ScrolledWindow, TextView};
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
+use gtk4::{ScrolledWindow, TextView};
 
 use crate::gui_settings::GuiSettings;
 use crate::gui_upper_notepad::GuiUpperNotebook;
@@ -47,7 +49,7 @@ pub fn save_configuration(manual_execution: bool, upper_notebook: &GuiUpperNoteb
         let list_store = get_list_store(&tree_view_included_directories);
         if let Some(iter) = list_store.iter_first() {
             loop {
-                data_to_save.push(list_store.value(&iter, ColumnsDirectory::Path as i32).get::<String>().unwrap());
+                data_to_save.push(list_store.get(&iter, ColumnsDirectory::Path as i32).get::<String>().unwrap());
                 if !list_store.iter_next(&iter) {
                     break;
                 }
@@ -60,7 +62,7 @@ pub fn save_configuration(manual_execution: bool, upper_notebook: &GuiUpperNoteb
         let list_store = get_list_store(&tree_view_excluded_directories);
         if let Some(iter) = list_store.iter_first() {
             loop {
-                data_to_save.push(list_store.value(&iter, ColumnsDirectory::Path as i32).get::<String>().unwrap());
+                data_to_save.push(list_store.get(&iter, ColumnsDirectory::Path as i32).get::<String>().unwrap());
                 if !list_store.iter_next(&iter) {
                     break;
                 }

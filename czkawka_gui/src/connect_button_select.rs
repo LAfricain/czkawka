@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 
-use gtk::prelude::*;
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
 
 use crate::gui_data::GuiData;
 use crate::gui_popovers::GuiPopovers;
@@ -32,7 +34,7 @@ pub fn connect_button_select(gui_data: &GuiData) {
 
     buttons_select_clone.connect_clicked(move |_| {
         show_required_popovers(&popovers, &to_notebook_main_enum(notebook_main.current_page().unwrap()), &hashmap);
-        popover_select.set_relative_to(Some(&buttons_select));
+        // popover_select.set_relative_to(Some(&buttons_select));
         popover_select.popup();
     });
 }

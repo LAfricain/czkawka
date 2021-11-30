@@ -1,4 +1,6 @@
-use gtk::prelude::*;
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
 
 use crate::gui_data::GuiData;
 use crate::help_functions::*;
@@ -21,11 +23,11 @@ pub fn connect_notebook_tabs(gui_data: &GuiData) {
         // Upper notebook
         {
             for (index, upper_tab) in get_all_upper_tabs().iter().enumerate() {
-                if *shared_upper_notebooks.borrow_mut().get_mut(&current_tab_in_main_notebook).unwrap().get_mut(upper_tab).unwrap() {
-                    notebook_upper.children().get(index).unwrap().show(); // TODO find alternative for children
-                } else {
-                    notebook_upper.children().get(index).unwrap().hide();
-                }
+                // if *shared_upper_notebooks.borrow_mut().get_mut(&current_tab_in_main_notebook).unwrap().get_mut(upper_tab).unwrap() {
+                //     notebook_upper.children().get(index).unwrap().show(); // TODO find alternative for children
+                // } else {
+                //     notebook_upper.children().get(index).unwrap().hide();
+                // }
             }
         }
     });

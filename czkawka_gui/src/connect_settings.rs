@@ -1,8 +1,10 @@
 use czkawka_core::common_messages::Messages;
 use czkawka_core::duplicate::HashType;
 use directories_next::ProjectDirs;
-use gtk::prelude::*;
-use gtk::{LabelBuilder, ResponseType, WindowPosition};
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
+use gtk4::{LabelBuilder, ResponseType};
 use image::imageops::FilterType;
 use img_hash::HashAlg;
 use std::collections::BTreeMap;
@@ -19,7 +21,6 @@ pub fn connect_settings(gui_data: &GuiData) {
         let window_main = gui_data.window_main.clone();
         let window_settings = gui_data.settings.window_settings.clone();
         button_settings.connect_clicked(move |_| {
-            window_main.set_position(WindowPosition::Center);
             window_main.set_sensitive(false);
             window_settings.show();
         });
@@ -27,10 +28,10 @@ pub fn connect_settings(gui_data: &GuiData) {
         let window_main = gui_data.window_main.clone();
         let window_settings = gui_data.settings.window_settings.clone();
 
-        window_settings.connect_delete_event(move |window, _y| {
+        window_settings.connect_close_request(move |window| {
             window.hide();
             window_main.set_sensitive(true);
-            gtk::Inhibit(true)
+            gtk4::Inhibit(true)
         });
     }
 
@@ -95,7 +96,7 @@ pub fn connect_settings(gui_data: &GuiData) {
 
             button_settings_duplicates_clear_cache.connect_clicked(move |_| {
                 let dialog = create_clear_cache_dialog("duplicates");
-                dialog.show_all();
+                dialog.show();
                 settings_window.set_sensitive(false);
 
                 let settings_window = settings_window.clone();
@@ -118,7 +119,7 @@ pub fn connect_settings(gui_data: &GuiData) {
                         }
 
                         messages.messages.push("Properly cleared cache".to_string());
-                        text_view_errors.buffer().unwrap().set_text(messages.create_messages_text().as_str());
+                        text_view_errors.buffer().set_text(messages.create_messages_text().as_str());
                     }
                     dialog.close();
                     settings_window.set_sensitive(true);
@@ -132,7 +133,7 @@ pub fn connect_settings(gui_data: &GuiData) {
 
             button_settings_similar_images_clear_cache.connect_clicked(move |_| {
                 let dialog = create_clear_cache_dialog("similar images");
-                dialog.show_all();
+                dialog.show();
                 settings_window.set_sensitive(false);
 
                 let settings_window = settings_window.clone();
@@ -152,7 +153,7 @@ pub fn connect_settings(gui_data: &GuiData) {
                         }
 
                         messages.messages.push("Properly cleared cache".to_string());
-                        text_view_errors.buffer().unwrap().set_text(messages.create_messages_text().as_str());
+                        text_view_errors.buffer().set_text(messages.create_messages_text().as_str());
                     }
                     dialog.close();
                     settings_window.set_sensitive(true);
@@ -166,7 +167,7 @@ pub fn connect_settings(gui_data: &GuiData) {
 
             button_settings_similar_videos_clear_cache.connect_clicked(move |_| {
                 let dialog = create_clear_cache_dialog("similar videos");
-                dialog.show_all();
+                dialog.show();
                 settings_window.set_sensitive(false);
 
                 let settings_window = settings_window.clone();
@@ -180,7 +181,7 @@ pub fn connect_settings(gui_data: &GuiData) {
                         }
 
                         messages.messages.push("Properly cleared cache".to_string());
-                        text_view_errors.buffer().unwrap().set_text(messages.create_messages_text().as_str());
+                        text_view_errors.buffer().set_text(messages.create_messages_text().as_str());
                     }
                     dialog.close();
                     settings_window.set_sensitive(true);
@@ -190,8 +191,8 @@ pub fn connect_settings(gui_data: &GuiData) {
     }
 }
 
-fn create_clear_cache_dialog(title_str: &str) -> gtk::Dialog {
-    let dialog = gtk::Dialog::builder().title(format!("Clearing {} cache", title_str).as_str()).build();
+fn create_clear_cache_dialog(title_str: &str) -> gtk4::Dialog {
+    let dialog = gtk4::Dialog::builder().title(format!("Clearing {} cache", title_str).as_str()).build();
     dialog.add_button("OK", ResponseType::Ok);
     dialog.add_button("Cancel", ResponseType::Cancel);
 
@@ -203,9 +204,9 @@ fn create_clear_cache_dialog(title_str: &str) -> gtk::Dialog {
         .build();
 
     let internal_box = get_dialog_box_child(&dialog);
-    internal_box.add(&label);
-    internal_box.add(&label2);
-    internal_box.add(&label3);
-    internal_box.add(&label4);
+    internal_box.append(&label);
+    internal_box.append(&label2);
+    internal_box.append(&label3);
+    internal_box.append(&label4);
     dialog
 }

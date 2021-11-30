@@ -1,8 +1,10 @@
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
-use gtk::prelude::*;
-use gtk::{ListStore, TextView};
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
+use gtk4::{ListStore, TextView};
 
 use czkawka_core::big_file::BigFile;
 use czkawka_core::broken_files::BrokenFiles;
@@ -316,8 +318,8 @@ pub const HEADER_ROW_COLOR: &str = "#272727";
 //pub const MAIN_ROW_COLOR: &str = "#f4f434"; // TEST
 //pub const HEADER_ROW_COLOR: &str = "#010101"; // TEST
 
-pub fn get_string_from_list_store(tree_view: &gtk::TreeView) -> Vec<String> {
-    let list_store: gtk::ListStore = get_list_store(tree_view);
+pub fn get_string_from_list_store(tree_view: &gtk4::TreeView) -> Vec<String> {
+    let list_store: gtk4::ListStore = get_list_store(tree_view);
 
     let mut string_vector: Vec<String> = Vec::new();
 
@@ -328,7 +330,7 @@ pub fn get_string_from_list_store(tree_view: &gtk::TreeView) -> Vec<String> {
         }
     };
     loop {
-        string_vector.push(list_store.value(&tree_iter, 0).get::<String>().unwrap());
+        string_vector.push(list_store.get(&tree_iter, 0).get::<String>().unwrap());
         if !list_store.iter_next(&tree_iter) {
             return string_vector;
         }
@@ -347,7 +349,7 @@ pub fn split_path(path: &Path) -> (String, String) {
     }
 }
 
-pub fn print_text_messages_to_text_view(text_messages: &Messages, text_view: &gtk::TextView) {
+pub fn print_text_messages_to_text_view(text_messages: &Messages, text_view: &gtk4::TextView) {
     let mut messages: String = String::from("");
     if !text_messages.messages.is_empty() {
         messages += "############### MESSAGES ###############\n";
@@ -380,23 +382,20 @@ pub fn print_text_messages_to_text_view(text_messages: &Messages, text_view: &gt
         messages += "\n";
     }
 
-    text_view.buffer().unwrap().set_text(messages.as_str());
+    text_view.buffer().set_text(messages.as_str());
 }
 
 pub fn reset_text_view(text_view: &TextView) {
-    text_view.buffer().unwrap().set_text("");
+    text_view.buffer().set_text("");
 }
 
 pub fn add_text_to_text_view(text_view: &TextView, string_to_append: &str) {
-    let buffer = text_view.buffer().unwrap();
-    let current_text = match buffer.text(&buffer.start_iter(), &buffer.end_iter(), true) {
-        Some(t) => t.to_string(),
-        None => "".to_string(),
-    };
+    let buffer = text_view.buffer();
+    let current_text = buffer.text(&buffer.start_iter(), &buffer.end_iter(), true);
     buffer.set_text(format!("{}\n{}", current_text, string_to_append).as_str());
 }
 
-pub fn set_buttons(hashmap: &mut HashMap<String, bool>, buttons_array: &[gtk::Button], button_names: &[String]) {
+pub fn set_buttons(hashmap: &mut HashMap<String, bool>, buttons_array: &[gtk4::Button], button_names: &[String]) {
     for (index, button) in buttons_array.iter().enumerate() {
         if *hashmap.get_mut(button_names[index].as_str()).unwrap() {
             button.show();
@@ -406,7 +405,7 @@ pub fn set_buttons(hashmap: &mut HashMap<String, bool>, buttons_array: &[gtk::Bu
     }
 }
 
-pub fn hide_all_buttons(buttons_array: &[gtk::Button]) {
+pub fn hide_all_buttons(buttons_array: &[gtk4::Button]) {
     for button in buttons_array {
         button.hide();
     }
@@ -419,12 +418,12 @@ pub fn get_text_from_invalid_symlink_cause(error: &invalid_symlinks::ErrorType) 
     }
 }
 
-pub fn get_list_store(tree_view: &gtk::TreeView) -> ListStore {
-    tree_view.model().unwrap().downcast::<gtk::ListStore>().unwrap()
+pub fn get_list_store(tree_view: &gtk4::TreeView) -> ListStore {
+    tree_view.model().unwrap().downcast::<gtk4::ListStore>().unwrap()
 }
 
-pub fn get_dialog_box_child(dialog: &gtk::Dialog) -> gtk::Box {
-    dialog.child().unwrap().downcast::<gtk::Box>().unwrap()
+pub fn get_dialog_box_child(dialog: &gtk4::Dialog) -> gtk4::Box {
+    dialog.child().unwrap().downcast::<gtk4::Box>().unwrap()
 }
 
 pub fn change_dimension_to_krotka(dimensions: String) -> (u64, u64) {
@@ -436,7 +435,7 @@ pub fn change_dimension_to_krotka(dimensions: String) -> (u64, u64) {
     (number1, number2)
 }
 
-pub fn get_notebook_enum_from_tree_view(tree_view: &gtk::TreeView) -> NotebookMainEnum {
+pub fn get_notebook_enum_from_tree_view(tree_view: &gtk4::TreeView) -> NotebookMainEnum {
     match (*tree_view).widget_name().to_string().as_str() {
         "tree_view_duplicate_finder" => NotebookMainEnum::Duplicate,
         "tree_view_empty_folder_finder" => NotebookMainEnum::EmptyDirectories,
@@ -455,38 +454,38 @@ pub fn get_notebook_enum_from_tree_view(tree_view: &gtk::TreeView) -> NotebookMa
     }
 }
 
-pub fn get_notebook_object_from_tree_view(tree_view: &gtk::TreeView) -> &NotebookObject {
+pub fn get_notebook_object_from_tree_view(tree_view: &gtk4::TreeView) -> &NotebookObject {
     let nb_enum = get_notebook_enum_from_tree_view(tree_view);
     &NOTEBOOKS_INFOS[nb_enum as usize]
 }
 
 // After e.g. deleting files, header may become orphan or have one child, so should be deleted in this case
-pub fn clean_invalid_headers(model: &gtk::ListStore, column_color: i32) {
+pub fn clean_invalid_headers(model: &gtk4::ListStore, column_color: i32) {
     // Remove only child from header
     if let Some(first_iter) = model.iter_first() {
-        let mut vec_tree_path_to_delete: Vec<gtk::TreePath> = Vec::new();
+        let mut vec_tree_path_to_delete: Vec<gtk4::TreePath> = Vec::new();
         let mut current_iter = first_iter;
-        if model.value(&current_iter, column_color).get::<String>().unwrap() != HEADER_ROW_COLOR {
+        if model.get(&current_iter, column_color).get::<String>().unwrap() != HEADER_ROW_COLOR {
             panic!("First deleted element, should be a header"); // First element should be header
         };
 
         let mut next_iter;
         let mut next_next_iter;
         'main: loop {
-            if model.value(&current_iter, column_color).get::<String>().unwrap() != HEADER_ROW_COLOR {
+            if model.get(&current_iter, column_color).get::<String>().unwrap() != HEADER_ROW_COLOR {
                 panic!("First deleted element, should be a header"); // First element should be header
             };
 
             next_iter = current_iter.clone();
             if !model.iter_next(&next_iter) {
                 // There is only single header left (H1 -> END) -> (NOTHING)
-                vec_tree_path_to_delete.push(model.path(&current_iter).unwrap());
+                vec_tree_path_to_delete.push(model.path(&current_iter));
                 break 'main;
             }
 
-            if model.value(&next_iter, column_color).get::<String>().unwrap() == HEADER_ROW_COLOR {
+            if model.get(&next_iter, column_color).get::<String>().unwrap() == HEADER_ROW_COLOR {
                 // There are two headers each others(we remove just first) -> (H1 -> H2) -> (H2)
-                vec_tree_path_to_delete.push(model.path(&current_iter).unwrap());
+                vec_tree_path_to_delete.push(model.path(&current_iter));
                 current_iter = next_iter.clone();
                 continue 'main;
             }
@@ -494,15 +493,15 @@ pub fn clean_invalid_headers(model: &gtk::ListStore, column_color: i32) {
             next_next_iter = next_iter.clone();
             if !model.iter_next(&next_next_iter) {
                 // There is only one child of header left, so we remove it with header (H1 -> C1 -> END) -> (NOTHING)
-                vec_tree_path_to_delete.push(model.path(&current_iter).unwrap());
-                vec_tree_path_to_delete.push(model.path(&next_iter).unwrap());
+                vec_tree_path_to_delete.push(model.path(&current_iter));
+                vec_tree_path_to_delete.push(model.path(&next_iter));
                 break 'main;
             }
 
-            if model.value(&next_next_iter, column_color).get::<String>().unwrap() == HEADER_ROW_COLOR {
+            if model.get(&next_next_iter, column_color).get::<String>().unwrap() == HEADER_ROW_COLOR {
                 // One child between two headers, we can remove them  (H1 -> C1 -> H2) -> (H2)
-                vec_tree_path_to_delete.push(model.path(&current_iter).unwrap());
-                vec_tree_path_to_delete.push(model.path(&next_iter).unwrap());
+                vec_tree_path_to_delete.push(model.path(&current_iter));
+                vec_tree_path_to_delete.push(model.path(&next_iter));
                 current_iter = next_next_iter.clone();
                 continue 'main;
             }
@@ -513,7 +512,7 @@ pub fn clean_invalid_headers(model: &gtk::ListStore, column_color: i32) {
                     break 'main;
                 }
                 // Move to next header
-                if model.value(&next_next_iter, column_color).get::<String>().unwrap() == HEADER_ROW_COLOR {
+                if model.get(&next_next_iter, column_color).get::<String>().unwrap() == HEADER_ROW_COLOR {
                     current_iter = next_next_iter.clone();
                     continue 'main;
                 }

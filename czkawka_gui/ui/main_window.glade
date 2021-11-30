@@ -670,7 +670,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_duplicates_hash">
+                              <object class="GtkCheckButton" id="radio_button_duplicates_hash">
                                 <property name="label" translatable="yes">Hash</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -685,7 +685,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_duplicates_hashmb">
+                              <object class="GtkCheckButton" id="radio_button_duplicates_hashmb">
                                 <property name="label" translatable="yes">HashMb</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -700,7 +700,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_duplicates_size">
+                              <object class="GtkCheckButton" id="radio_button_duplicates_size">
                                 <property name="label" translatable="yes">Size</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -715,7 +715,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_duplicates_name">
+                              <object class="GtkCheckButton" id="radio_button_duplicates_name">
                                 <property name="label" translatable="yes">Name</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -753,7 +753,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_hash_type_blake3">
+                              <object class="GtkCheckButton" id="radio_button_hash_type_blake3">
                                 <property name="label" translatable="yes">Blake3</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -768,7 +768,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_hash_type_crc32">
+                              <object class="GtkCheckButton" id="radio_button_hash_type_crc32">
                                 <property name="label" translatable="yes">CRC32</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -783,7 +783,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_hash_type_xxh3">
+                              <object class="GtkCheckButton" id="radio_button_hash_type_xxh3">
                                 <property name="label" translatable="yes">XXH3</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1103,7 +1103,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_resize_algorithm_lanczos3">
+                              <object class="GtkCheckButton" id="radio_button_resize_algorithm_lanczos3">
                                 <property name="label" translatable="yes">Lanczos3</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1118,7 +1118,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_resize_algorithm_nearest">
+                              <object class="GtkCheckButton" id="radio_button_resize_algorithm_nearest">
                                 <property name="label" translatable="yes">Nearest</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1134,7 +1134,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_resize_algorithm_triangle">
+                              <object class="GtkCheckButton" id="radio_button_resize_algorithm_triangle">
                                 <property name="label" translatable="yes">Triangle</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1150,7 +1150,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_resize_algorithm_gaussian">
+                              <object class="GtkCheckButton" id="radio_button_resize_algorithm_gaussian">
                                 <property name="label" translatable="yes">Gaussian</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1166,7 +1166,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_resize_algorithm_catmullrom">
+                              <object class="GtkCheckButton" id="radio_button_resize_algorithm_catmullrom">
                                 <property name="label" translatable="yes">CatmullRom</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1205,7 +1205,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_similar_hash_algorithm_gradient">
+                              <object class="GtkCheckButton" id="radio_button_similar_hash_algorithm_gradient">
                                 <property name="label" translatable="yes">Gradient</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1220,7 +1220,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_similar_hash_algorithm_blockhash">
+                              <object class="GtkCheckButton" id="radio_button_similar_hash_algorithm_blockhash">
                                 <property name="label" translatable="yes">Blockhash</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1236,7 +1236,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_similar_hash_algorithm_mean">
+                              <object class="GtkCheckButton" id="radio_button_similar_hash_algorithm_mean">
                                 <property name="label" translatable="yes">Mean</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1252,7 +1252,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_similar_hash_algorithm_vertgradient">
+                              <object class="GtkCheckButton" id="radio_button_similar_hash_algorithm_vertgradient">
                                 <property name="label" translatable="yes">VertGradient</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1268,7 +1268,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_similar_hash_algorithm_doublegradient">
+                              <object class="GtkCheckButton" id="radio_button_similar_hash_algorithm_doublegradient">
                                 <property name="label" translatable="yes">DoubleGradient</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1307,7 +1307,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_similar_hash_size_4">
+                              <object class="GtkCheckButton" id="radio_button_similar_hash_size_4">
                                 <property name="label" translatable="yes">4</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1323,7 +1323,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_similar_hash_size_8">
+                              <object class="GtkCheckButton" id="radio_button_similar_hash_size_8">
                                 <property name="label" translatable="yes">8</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -1338,7 +1338,7 @@ Author: Rafał Mikrut
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkRadioButton" id="radio_button_similar_hash_size_16">
+                              <object class="GtkCheckButton" id="radio_button_similar_hash_size_16">
                                 <property name="label" translatable="yes">16</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>

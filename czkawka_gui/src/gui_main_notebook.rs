@@ -1,184 +1,196 @@
-use gtk::prelude::*;
-use gtk::{EventControllerKey, TreeView};
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
+use gtk4::{EventControllerKey, TreeView};
 
 use crate::notebook_enums::NUMBER_OF_NOTEBOOK_MAIN_TABS;
 
 #[derive(Clone)]
 pub struct GuiMainNotebook {
-    pub notebook_main: gtk::Notebook,
+    pub notebook_main: gtk4::Notebook,
 
-    pub scrolled_window_duplicate_finder: gtk::ScrolledWindow,
-    pub scrolled_window_empty_folder_finder: gtk::ScrolledWindow,
-    pub scrolled_window_empty_files_finder: gtk::ScrolledWindow,
-    pub scrolled_window_temporary_files_finder: gtk::ScrolledWindow,
-    pub scrolled_window_big_files_finder: gtk::ScrolledWindow,
-    pub scrolled_window_similar_images_finder: gtk::ScrolledWindow,
-    pub scrolled_window_similar_videos_finder: gtk::ScrolledWindow,
-    pub scrolled_window_same_music_finder: gtk::ScrolledWindow,
-    pub scrolled_window_invalid_symlinks: gtk::ScrolledWindow,
-    pub scrolled_window_broken_files: gtk::ScrolledWindow,
+    pub scrolled_window_duplicate_finder: gtk4::ScrolledWindow,
+    pub scrolled_window_empty_folder_finder: gtk4::ScrolledWindow,
+    pub scrolled_window_empty_files_finder: gtk4::ScrolledWindow,
+    pub scrolled_window_temporary_files_finder: gtk4::ScrolledWindow,
+    pub scrolled_window_big_files_finder: gtk4::ScrolledWindow,
+    pub scrolled_window_similar_images_finder: gtk4::ScrolledWindow,
+    pub scrolled_window_similar_videos_finder: gtk4::ScrolledWindow,
+    pub scrolled_window_same_music_finder: gtk4::ScrolledWindow,
+    pub scrolled_window_invalid_symlinks: gtk4::ScrolledWindow,
+    pub scrolled_window_broken_files: gtk4::ScrolledWindow,
 
-    pub tree_view_duplicate_finder: gtk::TreeView,
-    pub tree_view_empty_folder_finder: gtk::TreeView,
-    pub tree_view_empty_files_finder: gtk::TreeView,
-    pub tree_view_temporary_files_finder: gtk::TreeView,
-    pub tree_view_big_files_finder: gtk::TreeView,
-    pub tree_view_similar_images_finder: gtk::TreeView,
-    pub tree_view_similar_videos_finder: gtk::TreeView,
-    pub tree_view_same_music_finder: gtk::TreeView,
-    pub tree_view_invalid_symlinks: gtk::TreeView,
-    pub tree_view_broken_files: gtk::TreeView,
+    pub tree_view_duplicate_finder: gtk4::TreeView,
+    pub tree_view_empty_folder_finder: gtk4::TreeView,
+    pub tree_view_empty_files_finder: gtk4::TreeView,
+    pub tree_view_temporary_files_finder: gtk4::TreeView,
+    pub tree_view_big_files_finder: gtk4::TreeView,
+    pub tree_view_similar_images_finder: gtk4::TreeView,
+    pub tree_view_similar_videos_finder: gtk4::TreeView,
+    pub tree_view_same_music_finder: gtk4::TreeView,
+    pub tree_view_invalid_symlinks: gtk4::TreeView,
+    pub tree_view_broken_files: gtk4::TreeView,
 
-    pub evk_tree_view_duplicate_finder: gtk::EventControllerKey, // TODO, in GTK4 this can be changed to e.g. add_widget - https://discourse.gnome.org/t/how-to-convert-code-to-use-eventcontrollerkey/8198/2
-    pub evk_tree_view_empty_folder_finder: gtk::EventControllerKey,
-    pub evk_tree_view_empty_files_finder: gtk::EventControllerKey,
-    pub evk_tree_view_temporary_files_finder: gtk::EventControllerKey,
-    pub evk_tree_view_big_files_finder: gtk::EventControllerKey,
-    pub evk_tree_view_similar_images_finder: gtk::EventControllerKey,
-    pub evk_tree_view_similar_videos_finder: gtk::EventControllerKey,
-    pub evk_tree_view_same_music_finder: gtk::EventControllerKey,
-    pub evk_tree_view_invalid_symlinks: gtk::EventControllerKey,
-    pub evk_tree_view_broken_files: gtk::EventControllerKey,
+    pub evk_tree_view_duplicate_finder: gtk4::EventControllerKey, // TODO, in GTK4 this can be changed to e.g. add_widget - https://discourse.gnome.org/t/how-to-convert-code-to-use-eventcontrollerkey/8198/2
+    pub evk_tree_view_empty_folder_finder: gtk4::EventControllerKey,
+    pub evk_tree_view_empty_files_finder: gtk4::EventControllerKey,
+    pub evk_tree_view_temporary_files_finder: gtk4::EventControllerKey,
+    pub evk_tree_view_big_files_finder: gtk4::EventControllerKey,
+    pub evk_tree_view_similar_images_finder: gtk4::EventControllerKey,
+    pub evk_tree_view_similar_videos_finder: gtk4::EventControllerKey,
+    pub evk_tree_view_same_music_finder: gtk4::EventControllerKey,
+    pub evk_tree_view_invalid_symlinks: gtk4::EventControllerKey,
+    pub evk_tree_view_broken_files: gtk4::EventControllerKey,
 
-    pub entry_similar_images_minimal_size: gtk::Entry,
-    pub entry_similar_images_maximal_size: gtk::Entry,
-    pub entry_similar_videos_minimal_size: gtk::Entry,
-    pub entry_similar_videos_maximal_size: gtk::Entry,
-    pub entry_duplicate_minimal_size: gtk::Entry,
-    pub entry_duplicate_maximal_size: gtk::Entry,
-    pub entry_same_music_minimal_size: gtk::Entry,
-    pub entry_same_music_maximal_size: gtk::Entry,
+    pub entry_similar_images_minimal_size: gtk4::Entry,
+    pub entry_similar_images_maximal_size: gtk4::Entry,
+    pub entry_similar_videos_minimal_size: gtk4::Entry,
+    pub entry_similar_videos_maximal_size: gtk4::Entry,
+    pub entry_duplicate_minimal_size: gtk4::Entry,
+    pub entry_duplicate_maximal_size: gtk4::Entry,
+    pub entry_same_music_minimal_size: gtk4::Entry,
+    pub entry_same_music_maximal_size: gtk4::Entry,
 
-    pub entry_big_files_number: gtk::Entry,
+    pub entry_big_files_number: gtk4::Entry,
 
     //// Check Buttons
-    pub check_button_music_title: gtk::CheckButton,
-    pub check_button_music_artist: gtk::CheckButton,
-    pub check_button_music_album_title: gtk::CheckButton,
-    pub check_button_music_album_artist: gtk::CheckButton,
-    pub check_button_music_year: gtk::CheckButton,
+    pub check_button_music_title: gtk4::CheckButton,
+    pub check_button_music_artist: gtk4::CheckButton,
+    pub check_button_music_album_title: gtk4::CheckButton,
+    pub check_button_music_album_artist: gtk4::CheckButton,
+    pub check_button_music_year: gtk4::CheckButton,
 
     //// Radio Buttons
     // Duplicates
-    pub radio_button_duplicates_name: gtk::RadioButton,
-    pub radio_button_duplicates_size: gtk::RadioButton,
-    pub radio_button_duplicates_hashmb: gtk::RadioButton,
-    pub radio_button_duplicates_hash: gtk::RadioButton,
+    pub radio_button_duplicates_name: gtk4::CheckButton,
+    pub radio_button_duplicates_size: gtk4::CheckButton,
+    pub radio_button_duplicates_hashmb: gtk4::CheckButton,
+    pub radio_button_duplicates_hash: gtk4::CheckButton,
 
-    pub scale_similarity_similar_images: gtk::Scale,
-    pub scale_similarity_similar_videos: gtk::Scale,
+    pub scale_similarity_similar_images: gtk4::Scale,
+    pub scale_similarity_similar_videos: gtk4::Scale,
 
-    pub radio_button_hash_type_blake3: gtk::RadioButton,
-    pub radio_button_hash_type_crc32: gtk::RadioButton,
-    pub radio_button_hash_type_xxh3: gtk::RadioButton,
+    pub radio_button_hash_type_blake3: gtk4::CheckButton,
+    pub radio_button_hash_type_crc32: gtk4::CheckButton,
+    pub radio_button_hash_type_xxh3: gtk4::CheckButton,
 
-    pub radio_button_resize_algorithm_lanczos3: gtk::RadioButton,
-    pub radio_button_resize_algorithm_nearest: gtk::RadioButton,
-    pub radio_button_resize_algorithm_triangle: gtk::RadioButton,
-    pub radio_button_resize_algorithm_gaussian: gtk::RadioButton,
-    pub radio_button_resize_algorithm_catmullrom: gtk::RadioButton,
+    pub radio_button_resize_algorithm_lanczos3: gtk4::CheckButton,
+    pub radio_button_resize_algorithm_nearest: gtk4::CheckButton,
+    pub radio_button_resize_algorithm_triangle: gtk4::CheckButton,
+    pub radio_button_resize_algorithm_gaussian: gtk4::CheckButton,
+    pub radio_button_resize_algorithm_catmullrom: gtk4::CheckButton,
 
-    pub radio_button_similar_hash_algorithm_gradient: gtk::RadioButton,
-    pub radio_button_similar_hash_algorithm_blockhash: gtk::RadioButton,
-    pub radio_button_similar_hash_algorithm_mean: gtk::RadioButton,
-    pub radio_button_similar_hash_algorithm_vertgradient: gtk::RadioButton,
-    pub radio_button_similar_hash_algorithm_doublegradient: gtk::RadioButton,
+    pub radio_button_similar_hash_algorithm_gradient: gtk4::CheckButton,
+    pub radio_button_similar_hash_algorithm_blockhash: gtk4::CheckButton,
+    pub radio_button_similar_hash_algorithm_mean: gtk4::CheckButton,
+    pub radio_button_similar_hash_algorithm_vertgradient: gtk4::CheckButton,
+    pub radio_button_similar_hash_algorithm_doublegradient: gtk4::CheckButton,
 
-    pub radio_button_similar_hash_size_4: gtk::RadioButton,
-    pub radio_button_similar_hash_size_8: gtk::RadioButton,
-    pub radio_button_similar_hash_size_16: gtk::RadioButton,
+    pub radio_button_similar_hash_size_4: gtk4::CheckButton,
+    pub radio_button_similar_hash_size_8: gtk4::CheckButton,
+    pub radio_button_similar_hash_size_16: gtk4::CheckButton,
 
-    pub image_preview_similar_images: gtk::Image,
-    pub image_preview_duplicates: gtk::Image,
+    pub image_preview_similar_images: gtk4::Image,
+    pub image_preview_duplicates: gtk4::Image,
 }
 
 impl GuiMainNotebook {
-    pub fn create_from_builder(builder: &gtk::Builder) -> Self {
-        let notebook_main: gtk::Notebook = builder.object("notebook_main").unwrap();
+    pub fn create_from_builder(builder: &gtk4::Builder) -> Self {
+        let notebook_main: gtk4::Notebook = builder.object("notebook_main").unwrap();
 
-        let scrolled_window_duplicate_finder: gtk::ScrolledWindow = builder.object("scrolled_window_duplicate_finder").unwrap();
-        let scrolled_window_empty_folder_finder: gtk::ScrolledWindow = builder.object("scrolled_window_empty_folder_finder").unwrap();
-        let scrolled_window_empty_files_finder: gtk::ScrolledWindow = builder.object("scrolled_window_empty_files_finder").unwrap();
-        let scrolled_window_temporary_files_finder: gtk::ScrolledWindow = builder.object("scrolled_window_temporary_files_finder").unwrap();
-        let scrolled_window_big_files_finder: gtk::ScrolledWindow = builder.object("scrolled_window_big_files_finder").unwrap();
-        let scrolled_window_similar_images_finder: gtk::ScrolledWindow = builder.object("scrolled_window_similar_images_finder").unwrap();
-        let scrolled_window_similar_videos_finder: gtk::ScrolledWindow = builder.object("scrolled_window_similar_videos_finder").unwrap();
-        let scrolled_window_same_music_finder: gtk::ScrolledWindow = builder.object("scrolled_window_same_music_finder").unwrap();
-        let scrolled_window_invalid_symlinks: gtk::ScrolledWindow = builder.object("scrolled_window_invalid_symlinks").unwrap();
-        let scrolled_window_broken_files: gtk::ScrolledWindow = builder.object("scrolled_window_broken_files").unwrap();
+        let scrolled_window_duplicate_finder: gtk4::ScrolledWindow = builder.object("scrolled_window_duplicate_finder").unwrap();
+        let scrolled_window_empty_folder_finder: gtk4::ScrolledWindow = builder.object("scrolled_window_empty_folder_finder").unwrap();
+        let scrolled_window_empty_files_finder: gtk4::ScrolledWindow = builder.object("scrolled_window_empty_files_finder").unwrap();
+        let scrolled_window_temporary_files_finder: gtk4::ScrolledWindow = builder.object("scrolled_window_temporary_files_finder").unwrap();
+        let scrolled_window_big_files_finder: gtk4::ScrolledWindow = builder.object("scrolled_window_big_files_finder").unwrap();
+        let scrolled_window_similar_images_finder: gtk4::ScrolledWindow = builder.object("scrolled_window_similar_images_finder").unwrap();
+        let scrolled_window_similar_videos_finder: gtk4::ScrolledWindow = builder.object("scrolled_window_similar_videos_finder").unwrap();
+        let scrolled_window_same_music_finder: gtk4::ScrolledWindow = builder.object("scrolled_window_same_music_finder").unwrap();
+        let scrolled_window_invalid_symlinks: gtk4::ScrolledWindow = builder.object("scrolled_window_invalid_symlinks").unwrap();
+        let scrolled_window_broken_files: gtk4::ScrolledWindow = builder.object("scrolled_window_broken_files").unwrap();
 
-        let tree_view_duplicate_finder: gtk::TreeView = TreeView::new();
+        let tree_view_duplicate_finder: gtk4::TreeView = TreeView::new();
         tree_view_duplicate_finder.set_widget_name("PIERD");
-        let tree_view_empty_folder_finder: gtk::TreeView = TreeView::new();
-        let tree_view_empty_files_finder: gtk::TreeView = TreeView::new();
-        let tree_view_temporary_files_finder: gtk::TreeView = TreeView::new();
-        let tree_view_big_files_finder: gtk::TreeView = TreeView::new();
-        let tree_view_similar_images_finder: gtk::TreeView = TreeView::new();
-        let tree_view_similar_videos_finder: gtk::TreeView = TreeView::new();
-        let tree_view_same_music_finder: gtk::TreeView = TreeView::new();
-        let tree_view_invalid_symlinks: gtk::TreeView = TreeView::new();
-        let tree_view_broken_files: gtk::TreeView = TreeView::new();
+        let tree_view_empty_folder_finder: gtk4::TreeView = TreeView::new();
+        let tree_view_empty_files_finder: gtk4::TreeView = TreeView::new();
+        let tree_view_temporary_files_finder: gtk4::TreeView = TreeView::new();
+        let tree_view_big_files_finder: gtk4::TreeView = TreeView::new();
+        let tree_view_similar_images_finder: gtk4::TreeView = TreeView::new();
+        let tree_view_similar_videos_finder: gtk4::TreeView = TreeView::new();
+        let tree_view_same_music_finder: gtk4::TreeView = TreeView::new();
+        let tree_view_invalid_symlinks: gtk4::TreeView = TreeView::new();
+        let tree_view_broken_files: gtk4::TreeView = TreeView::new();
 
-        let evk_tree_view_duplicate_finder: gtk::EventControllerKey = EventControllerKey::new(&tree_view_duplicate_finder);
-        let evk_tree_view_empty_folder_finder: gtk::EventControllerKey = EventControllerKey::new(&tree_view_empty_folder_finder);
-        let evk_tree_view_empty_files_finder: gtk::EventControllerKey = EventControllerKey::new(&tree_view_empty_files_finder);
-        let evk_tree_view_temporary_files_finder: gtk::EventControllerKey = EventControllerKey::new(&tree_view_temporary_files_finder);
-        let evk_tree_view_big_files_finder: gtk::EventControllerKey = EventControllerKey::new(&tree_view_big_files_finder);
-        let evk_tree_view_similar_images_finder: gtk::EventControllerKey = EventControllerKey::new(&tree_view_similar_images_finder);
-        let evk_tree_view_similar_videos_finder: gtk::EventControllerKey = EventControllerKey::new(&tree_view_similar_videos_finder);
-        let evk_tree_view_same_music_finder: gtk::EventControllerKey = EventControllerKey::new(&tree_view_same_music_finder);
-        let evk_tree_view_invalid_symlinks: gtk::EventControllerKey = EventControllerKey::new(&tree_view_invalid_symlinks);
-        let evk_tree_view_broken_files: gtk::EventControllerKey = EventControllerKey::new(&tree_view_broken_files);
+        let evk_tree_view_duplicate_finder: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_duplicate_finder.add_controller(&evk_tree_view_duplicate_finder);
+        let evk_tree_view_empty_folder_finder: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_empty_folder_finder.add_controller(&evk_tree_view_empty_folder_finder);
+        let evk_tree_view_empty_files_finder: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_empty_files_finder.add_controller(&evk_tree_view_empty_files_finder);
+        let evk_tree_view_temporary_files_finder: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_temporary_files_finder.add_controller(&evk_tree_view_temporary_files_finder);
+        let evk_tree_view_big_files_finder: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_big_files_finder.add_controller(&evk_tree_view_big_files_finder);
+        let evk_tree_view_similar_images_finder: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_similar_images_finder.add_controller(&evk_tree_view_similar_images_finder);
+        let evk_tree_view_similar_videos_finder: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_similar_videos_finder.add_controller(&evk_tree_view_similar_videos_finder);
+        let evk_tree_view_same_music_finder: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_same_music_finder.add_controller(&evk_tree_view_same_music_finder);
+        let evk_tree_view_invalid_symlinks: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_invalid_symlinks.add_controller(&evk_tree_view_invalid_symlinks);
+        let evk_tree_view_broken_files: gtk4::EventControllerKey = EventControllerKey::new();
+        tree_view_broken_files.add_controller(&evk_tree_view_broken_files);
 
-        let entry_similar_images_minimal_size: gtk::Entry = builder.object("entry_similar_images_minimal_size").unwrap();
-        let entry_similar_images_maximal_size: gtk::Entry = builder.object("entry_similar_images_maximal_size").unwrap();
-        let entry_similar_videos_minimal_size: gtk::Entry = builder.object("entry_similar_videos_minimal_size").unwrap();
-        let entry_similar_videos_maximal_size: gtk::Entry = builder.object("entry_similar_videos_maximal_size").unwrap();
-        let entry_duplicate_minimal_size: gtk::Entry = builder.object("entry_duplicate_minimal_size").unwrap();
-        let entry_duplicate_maximal_size: gtk::Entry = builder.object("entry_duplicate_maximal_size").unwrap();
-        let entry_same_music_minimal_size: gtk::Entry = builder.object("entry_same_music_minimal_size").unwrap();
-        let entry_same_music_maximal_size: gtk::Entry = builder.object("entry_same_music_maximal_size").unwrap();
+        let entry_similar_images_minimal_size: gtk4::Entry = builder.object("entry_similar_images_minimal_size").unwrap();
+        let entry_similar_images_maximal_size: gtk4::Entry = builder.object("entry_similar_images_maximal_size").unwrap();
+        let entry_similar_videos_minimal_size: gtk4::Entry = builder.object("entry_similar_videos_minimal_size").unwrap();
+        let entry_similar_videos_maximal_size: gtk4::Entry = builder.object("entry_similar_videos_maximal_size").unwrap();
+        let entry_duplicate_minimal_size: gtk4::Entry = builder.object("entry_duplicate_minimal_size").unwrap();
+        let entry_duplicate_maximal_size: gtk4::Entry = builder.object("entry_duplicate_maximal_size").unwrap();
+        let entry_same_music_minimal_size: gtk4::Entry = builder.object("entry_same_music_minimal_size").unwrap();
+        let entry_same_music_maximal_size: gtk4::Entry = builder.object("entry_same_music_maximal_size").unwrap();
 
-        let entry_big_files_number: gtk::Entry = builder.object("entry_big_files_number").unwrap();
+        let entry_big_files_number: gtk4::Entry = builder.object("entry_big_files_number").unwrap();
 
         //// Check Buttons
-        let check_button_music_title: gtk::CheckButton = builder.object("check_button_music_title").unwrap();
-        let check_button_music_artist: gtk::CheckButton = builder.object("check_button_music_artist").unwrap();
-        let check_button_music_album_title: gtk::CheckButton = builder.object("check_button_music_album_title").unwrap();
-        let check_button_music_album_artist: gtk::CheckButton = builder.object("check_button_music_album_artist").unwrap();
-        let check_button_music_year: gtk::CheckButton = builder.object("check_button_music_year").unwrap();
+        let check_button_music_title: gtk4::CheckButton = builder.object("check_button_music_title").unwrap();
+        let check_button_music_artist: gtk4::CheckButton = builder.object("check_button_music_artist").unwrap();
+        let check_button_music_album_title: gtk4::CheckButton = builder.object("check_button_music_album_title").unwrap();
+        let check_button_music_album_artist: gtk4::CheckButton = builder.object("check_button_music_album_artist").unwrap();
+        let check_button_music_year: gtk4::CheckButton = builder.object("check_button_music_year").unwrap();
 
         //// Radio Buttons
-        let radio_button_duplicates_name: gtk::RadioButton = builder.object("radio_button_duplicates_name").unwrap();
-        let radio_button_duplicates_size: gtk::RadioButton = builder.object("radio_button_duplicates_size").unwrap();
-        let radio_button_duplicates_hashmb: gtk::RadioButton = builder.object("radio_button_duplicates_hashmb").unwrap();
-        let radio_button_duplicates_hash: gtk::RadioButton = builder.object("radio_button_duplicates_hash").unwrap();
+        let radio_button_duplicates_name: gtk4::CheckButton = builder.object("radio_button_duplicates_name").unwrap();
+        let radio_button_duplicates_size: gtk4::CheckButton = builder.object("radio_button_duplicates_size").unwrap();
+        let radio_button_duplicates_hashmb: gtk4::CheckButton = builder.object("radio_button_duplicates_hashmb").unwrap();
+        let radio_button_duplicates_hash: gtk4::CheckButton = builder.object("radio_button_duplicates_hash").unwrap();
 
-        let scale_similarity_similar_images: gtk::Scale = builder.object("scale_similarity_similar_images").unwrap();
-        let scale_similarity_similar_videos: gtk::Scale = builder.object("scale_similarity_similar_videos").unwrap();
+        let scale_similarity_similar_images: gtk4::Scale = builder.object("scale_similarity_similar_images").unwrap();
+        let scale_similarity_similar_videos: gtk4::Scale = builder.object("scale_similarity_similar_videos").unwrap();
 
-        let radio_button_hash_type_blake3: gtk::RadioButton = builder.object("radio_button_hash_type_blake3").unwrap();
-        let radio_button_hash_type_crc32: gtk::RadioButton = builder.object("radio_button_hash_type_crc32").unwrap();
-        let radio_button_hash_type_xxh3: gtk::RadioButton = builder.object("radio_button_hash_type_xxh3").unwrap();
+        let radio_button_hash_type_blake3: gtk4::CheckButton = builder.object("radio_button_hash_type_blake3").unwrap();
+        let radio_button_hash_type_crc32: gtk4::CheckButton = builder.object("radio_button_hash_type_crc32").unwrap();
+        let radio_button_hash_type_xxh3: gtk4::CheckButton = builder.object("radio_button_hash_type_xxh3").unwrap();
 
-        let radio_button_resize_algorithm_lanczos3: gtk::RadioButton = builder.object("radio_button_resize_algorithm_lanczos3").unwrap();
-        let radio_button_resize_algorithm_nearest: gtk::RadioButton = builder.object("radio_button_resize_algorithm_nearest").unwrap();
-        let radio_button_resize_algorithm_triangle: gtk::RadioButton = builder.object("radio_button_resize_algorithm_triangle").unwrap();
-        let radio_button_resize_algorithm_gaussian: gtk::RadioButton = builder.object("radio_button_resize_algorithm_gaussian").unwrap();
-        let radio_button_resize_algorithm_catmullrom: gtk::RadioButton = builder.object("radio_button_resize_algorithm_catmullrom").unwrap();
+        let radio_button_resize_algorithm_lanczos3: gtk4::CheckButton = builder.object("radio_button_resize_algorithm_lanczos3").unwrap();
+        let radio_button_resize_algorithm_nearest: gtk4::CheckButton = builder.object("radio_button_resize_algorithm_nearest").unwrap();
+        let radio_button_resize_algorithm_triangle: gtk4::CheckButton = builder.object("radio_button_resize_algorithm_triangle").unwrap();
+        let radio_button_resize_algorithm_gaussian: gtk4::CheckButton = builder.object("radio_button_resize_algorithm_gaussian").unwrap();
+        let radio_button_resize_algorithm_catmullrom: gtk4::CheckButton = builder.object("radio_button_resize_algorithm_catmullrom").unwrap();
 
-        let radio_button_similar_hash_algorithm_gradient: gtk::RadioButton = builder.object("radio_button_similar_hash_algorithm_gradient").unwrap();
-        let radio_button_similar_hash_algorithm_blockhash: gtk::RadioButton = builder.object("radio_button_similar_hash_algorithm_blockhash").unwrap();
-        let radio_button_similar_hash_algorithm_mean: gtk::RadioButton = builder.object("radio_button_similar_hash_algorithm_mean").unwrap();
-        let radio_button_similar_hash_algorithm_vertgradient: gtk::RadioButton = builder.object("radio_button_similar_hash_algorithm_vertgradient").unwrap();
-        let radio_button_similar_hash_algorithm_doublegradient: gtk::RadioButton = builder.object("radio_button_similar_hash_algorithm_doublegradient").unwrap();
+        let radio_button_similar_hash_algorithm_gradient: gtk4::CheckButton = builder.object("radio_button_similar_hash_algorithm_gradient").unwrap();
+        let radio_button_similar_hash_algorithm_blockhash: gtk4::CheckButton = builder.object("radio_button_similar_hash_algorithm_blockhash").unwrap();
+        let radio_button_similar_hash_algorithm_mean: gtk4::CheckButton = builder.object("radio_button_similar_hash_algorithm_mean").unwrap();
+        let radio_button_similar_hash_algorithm_vertgradient: gtk4::CheckButton = builder.object("radio_button_similar_hash_algorithm_vertgradient").unwrap();
+        let radio_button_similar_hash_algorithm_doublegradient: gtk4::CheckButton = builder.object("radio_button_similar_hash_algorithm_doublegradient").unwrap();
 
-        let radio_button_similar_hash_size_4: gtk::RadioButton = builder.object("radio_button_similar_hash_size_4").unwrap();
-        let radio_button_similar_hash_size_8: gtk::RadioButton = builder.object("radio_button_similar_hash_size_8").unwrap();
-        let radio_button_similar_hash_size_16: gtk::RadioButton = builder.object("radio_button_similar_hash_size_16").unwrap();
+        let radio_button_similar_hash_size_4: gtk4::CheckButton = builder.object("radio_button_similar_hash_size_4").unwrap();
+        let radio_button_similar_hash_size_8: gtk4::CheckButton = builder.object("radio_button_similar_hash_size_8").unwrap();
+        let radio_button_similar_hash_size_16: gtk4::CheckButton = builder.object("radio_button_similar_hash_size_16").unwrap();
 
-        let image_preview_similar_images: gtk::Image = builder.object("image_preview_similar_images").unwrap();
-        let image_preview_duplicates: gtk::Image = builder.object("image_preview_duplicates").unwrap();
+        let image_preview_similar_images: gtk4::Image = builder.object("image_preview_similar_images").unwrap();
+        let image_preview_duplicates: gtk4::Image = builder.object("image_preview_duplicates").unwrap();
 
         Self {
             notebook_main,

@@ -1,18 +1,20 @@
-use gtk::prelude::*;
-use gtk::{Builder, Window};
+use gtk4::prelude::*;
+use gtk4::prelude::*;
+use gtk4::Inhibit;
+use gtk4::{Builder, Window};
 
 #[derive(Clone)]
 pub struct GuiProgressDialog {
-    pub window_progress: gtk::Window,
+    pub window_progress: gtk4::Window,
 
-    pub progress_bar_current_stage: gtk::ProgressBar,
-    pub progress_bar_all_stages: gtk::ProgressBar,
+    pub progress_bar_current_stage: gtk4::ProgressBar,
+    pub progress_bar_all_stages: gtk4::ProgressBar,
 
-    pub label_stage: gtk::Label,
+    pub label_stage: gtk4::Label,
 
-    pub grid_progress_stages: gtk::Grid,
+    pub grid_progress_stages: gtk4::Grid,
 
-    pub button_stop_in_dialog: gtk::Button,
+    pub button_stop_in_dialog: gtk4::Button,
 }
 
 impl GuiProgressDialog {
@@ -20,18 +22,18 @@ impl GuiProgressDialog {
         let glade_src = include_str!("../ui/progress.glade").to_string();
         let builder = Builder::from_string(glade_src.as_str());
 
-        let window_progress: gtk::Window = builder.object("window_progress").unwrap();
+        let window_progress: gtk4::Window = builder.object("window_progress").unwrap();
         window_progress.set_transient_for(Some(window_main));
         window_progress.set_modal(true);
 
-        let progress_bar_current_stage: gtk::ProgressBar = builder.object("progress_bar_current_stage").unwrap();
-        let progress_bar_all_stages: gtk::ProgressBar = builder.object("progress_bar_all_stages").unwrap();
+        let progress_bar_current_stage: gtk4::ProgressBar = builder.object("progress_bar_current_stage").unwrap();
+        let progress_bar_all_stages: gtk4::ProgressBar = builder.object("progress_bar_all_stages").unwrap();
 
-        let label_stage: gtk::Label = builder.object("label_stage").unwrap();
+        let label_stage: gtk4::Label = builder.object("label_stage").unwrap();
 
-        let grid_progress_stages: gtk::Grid = builder.object("grid_progress_stages").unwrap();
+        let grid_progress_stages: gtk4::Grid = builder.object("grid_progress_stages").unwrap();
 
-        let button_stop_in_dialog: gtk::Button = builder.object("button_stop_in_dialog").unwrap();
+        let button_stop_in_dialog: gtk4::Button = builder.object("button_stop_in_dialog").unwrap();
 
         Self {
             window_progress,
