@@ -1,6 +1,5 @@
 use gtk4::prelude::*;
 
-
 use gtk4::{EventControllerKey, TreeView};
 
 use crate::notebook_enums::NUMBER_OF_NOTEBOOK_MAIN_TABS;

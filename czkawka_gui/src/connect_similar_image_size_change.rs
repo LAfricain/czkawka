@@ -1,7 +1,5 @@
 use gtk4::prelude::*;
 
-
-
 use czkawka_core::similar_images::SIMILAR_VALUES;
 
 use crate::gui_data::GuiData;

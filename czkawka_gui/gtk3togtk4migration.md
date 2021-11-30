@@ -24,6 +24,8 @@
 
 ` internal-child="vbox"` - remove this  
 ` internal-child="action_area"`
+
+change `.parent` to `transient for`
 ## Remove
 `use gtk4::WindowPosition;`
 `[a-zA-Z_]+.set_position\(WindowPosition::Center\);`

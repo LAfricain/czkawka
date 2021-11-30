@@ -4,7 +4,6 @@ use std::rc::Rc;
 
 use gtk4::prelude::*;
 
-
 use gtk4::{Button, Entry};
 
 use czkawka_core::common_traits::SaveResults;

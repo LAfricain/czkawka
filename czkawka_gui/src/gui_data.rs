@@ -7,7 +7,6 @@ use gtk4::prelude::*;
 
 use gtk4::Builder;
 
-
 use czkawka_core::big_file::BigFile;
 use czkawka_core::broken_files::BrokenFiles;
 use czkawka_core::duplicate::DuplicateFinder;

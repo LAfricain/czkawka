@@ -2,7 +2,6 @@ use gtk4::prelude::*;
 
 use gtk4::Button;
 
-
 #[derive(Clone)]
 pub struct GuiBottomButtons {
     pub buttons_search: gtk4::Button,

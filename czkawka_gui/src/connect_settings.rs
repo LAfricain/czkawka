@@ -3,7 +3,6 @@ use czkawka_core::duplicate::HashType;
 use directories_next::ProjectDirs;
 use gtk4::prelude::*;
 
-
 use gtk4::{LabelBuilder, ResponseType};
 use image::imageops::FilterType;
 use img_hash::HashAlg;

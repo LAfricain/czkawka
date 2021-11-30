@@ -5,7 +5,6 @@ use std::path::Path;
 use directories_next::ProjectDirs;
 use gtk4::prelude::*;
 
-
 use gtk4::{CheckButton, EventControllerKey, Image, SelectionMode, TextView, TreeView};
 use image::imageops::FilterType;
 use image::GenericImageView;

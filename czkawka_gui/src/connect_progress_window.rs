@@ -1,8 +1,6 @@
 use futures::StreamExt;
 use gtk4::prelude::*;
 
-
-
 use czkawka_core::{big_file, broken_files, duplicate, empty_files, empty_folder, invalid_symlinks, same_music, similar_images, similar_videos, temporary};
 
 use crate::gui_data::GuiData;

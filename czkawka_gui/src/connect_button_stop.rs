@@ -1,7 +1,3 @@
-
-
-
-
 use crate::gui_data::GuiData;
 
 pub fn connect_button_stop(_gui_data: &GuiData) {

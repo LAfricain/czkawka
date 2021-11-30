@@ -2,7 +2,6 @@ use gtk4::prelude::*;
 
 use gtk4::Builder;
 
-
 #[derive(Clone)]
 pub struct GuiAbout {
     pub about_dialog: gtk4::AboutDialog,

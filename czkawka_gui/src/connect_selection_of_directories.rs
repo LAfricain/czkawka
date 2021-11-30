@@ -1,6 +1,5 @@
 use gtk4::prelude::*;
 
-
 use gtk4::{ResponseType, TreeView, Window};
 use std::path::PathBuf;
 
@@ -82,7 +81,7 @@ pub fn connect_selection_of_directories(gui_data: &GuiData) {
 fn add_chosen_directories(window_main: &Window, tree_view: &TreeView, excluded_items: bool) {
     let folders_to = if excluded_items { "Folders to exclude" } else { "Folders to include" };
 
-    let chooser = gtk4::FileChooserDialog::builder().title(folders_to).action(gtk4::FileChooserAction::SelectFolder).build();
+    let chooser = gtk4::FileChooserDialog::builder().title(folders_to).transient_for(window_main).action(gtk4::FileChooserAction::SelectFolder).build();
     chooser.add_button("Ok", ResponseType::Ok);
     chooser.add_button("Close", ResponseType::Cancel);
 

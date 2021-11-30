@@ -1,7 +1,6 @@
 use gtk4::prelude::*;
 use gtk4::Builder;
 
-
 #[derive(Clone)]
 pub struct GuiPopovers {
     pub buttons_popover_select_all: gtk4::Button,

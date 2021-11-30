@@ -1,6 +1,5 @@
 use gtk4::prelude::*;
 
-
 use gtk4::{ResponseType, TreeIter, Window};
 
 use czkawka_core::common::Common;

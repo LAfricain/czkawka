@@ -2,8 +2,6 @@ use std::collections::HashMap;
 
 use gtk4::prelude::*;
 
-
-
 use crate::gui_data::GuiData;
 use crate::gui_popovers::GuiPopovers;
 use crate::help_functions::PopoverTypes;

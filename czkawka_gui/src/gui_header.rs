@@ -1,7 +1,5 @@
 use gtk4::prelude::*;
 
-
-
 #[derive(Clone)]
 pub struct GuiHeader {
     pub button_settings: gtk4::Button,

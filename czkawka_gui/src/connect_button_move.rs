@@ -2,7 +2,6 @@ use std::path::{Path, PathBuf};
 
 use gtk4::prelude::*;
 
-
 use gtk4::{ResponseType, TreePath};
 
 use crate::gui_data::GuiData;

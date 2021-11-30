@@ -3,7 +3,6 @@ use std::path::{Path, PathBuf};
 
 use gtk4::prelude::*;
 
-
 use gtk4::{ListStore, TextView};
 
 use czkawka_core::big_file::BigFile;

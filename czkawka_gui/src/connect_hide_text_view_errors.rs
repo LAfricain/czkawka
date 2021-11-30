@@ -1,7 +1,5 @@
 use gtk4::prelude::*;
 
-
-
 use crate::gui_data::GuiData;
 
 pub fn connect_hide_text_view_errors(gui_data: &GuiData) {

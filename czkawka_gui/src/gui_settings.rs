@@ -1,6 +1,5 @@
 use gtk4::prelude::*;
 
-
 use gtk4::{Builder, Window};
 
 #[derive(Clone)]
