@@ -1,7 +1,7 @@
 use gtk4::prelude::*;
-use gtk4::prelude::*;
+
 use gtk4::Button;
-use gtk4::Inhibit;
+
 
 #[derive(Clone)]
 pub struct GuiBottomButtons {

@@ -1,14 +1,14 @@
 use crate::help_functions::*;
 use gdk::ModifierType;
 use gtk4::prelude::*;
-use gtk4::prelude::*;
+
 use gtk4::{gdk, Inhibit};
 
 // TODO add option to open files and folders from context menu activated by pressing ONCE with right mouse button
 
-pub fn opening_enter_function_ported2(event_controller: &gtk4::EventControllerKey, key: gdk4::keys::Key, _modifier_type: ModifierType) {}
+pub fn opening_enter_function_ported2(_event_controller: &gtk4::EventControllerKey, _key: gdk4::keys::Key, _modifier_type: ModifierType) {}
 
-pub fn opening_enter_function_ported(event_controller: &gtk4::EventControllerKey, key: gdk4::keys::Key, key_code: u32, _modifier_type: ModifierType) -> gtk4::Inhibit {
+pub fn opening_enter_function_ported(event_controller: &gtk4::EventControllerKey, _key: gdk4::keys::Key, key_code: u32, _modifier_type: ModifierType) -> gtk4::Inhibit {
     let tree_view = event_controller.widget().unwrap().downcast::<gtk4::TreeView>().unwrap();
     #[cfg(debug_assertions)]
     {

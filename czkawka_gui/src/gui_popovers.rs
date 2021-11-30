@@ -1,6 +1,6 @@
 use gtk4::prelude::*;
 use gtk4::Builder;
-use gtk4::Inhibit;
+
 
 #[derive(Clone)]
 pub struct GuiPopovers {

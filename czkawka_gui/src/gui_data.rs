@@ -4,9 +4,9 @@ use std::rc::Rc;
 
 use crossbeam_channel::unbounded;
 use gtk4::prelude::*;
-use gtk4::prelude::*;
+
 use gtk4::Builder;
-use gtk4::Inhibit;
+
 
 use czkawka_core::big_file::BigFile;
 use czkawka_core::broken_files::BrokenFiles;

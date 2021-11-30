@@ -2,8 +2,8 @@ use czkawka_core::common_messages::Messages;
 use czkawka_core::duplicate::HashType;
 use directories_next::ProjectDirs;
 use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
 use gtk4::{LabelBuilder, ResponseType};
 use image::imageops::FilterType;
 use img_hash::HashAlg;

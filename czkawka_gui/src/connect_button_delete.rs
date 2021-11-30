@@ -3,8 +3,8 @@ use std::fs;
 use std::fs::Metadata;
 
 use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
 use gtk4::{Align, CheckButton, Dialog, ResponseType, TextView};
 
 use crate::gui_data::GuiData;

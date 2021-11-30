@@ -4,8 +4,8 @@ use std::path::Path;
 
 use directories_next::ProjectDirs;
 use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
 use gtk4::{CheckButton, EventControllerKey, Image, SelectionMode, TextView, TreeView};
 use image::imageops::FilterType;
 use image::GenericImageView;
@@ -54,7 +54,7 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
         let scrolled_window_invalid_symlinks = gui_data.main_notebook.scrolled_window_invalid_symlinks.clone();
         let scrolled_window_broken_files = gui_data.main_notebook.scrolled_window_broken_files.clone();
 
-        let text_view_errors = gui_data.text_view_errors.clone();
+        let _text_view_errors = gui_data.text_view_errors.clone();
 
         let scale_similarity_similar_images = gui_data.main_notebook.scale_similarity_similar_images.clone();
         let scale_similarity_similar_videos = gui_data.main_notebook.scale_similarity_similar_videos.clone();
@@ -109,8 +109,8 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                 {
                     // Other connects
 
-                    let check_button_settings_show_preview_duplicates = gui_data.settings.check_button_settings_show_preview_duplicates.clone();
-                    let image_preview_duplicates = gui_data.main_notebook.image_preview_duplicates.clone();
+                    let _check_button_settings_show_preview_duplicates = gui_data.settings.check_button_settings_show_preview_duplicates.clone();
+                    let _image_preview_duplicates = gui_data.main_notebook.image_preview_duplicates.clone();
 
                     // tree_view.connect_button_press_event(opening_double_click_function);
                     // tree_view.connect_button_release_event(move |tree_view, _event| {
@@ -255,10 +255,10 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                 }
                 {
                     // Other connects
-                    let check_button_settings_show_preview_similar_images = gui_data.settings.check_button_settings_show_preview_similar_images.clone();
+                    let _check_button_settings_show_preview_similar_images = gui_data.settings.check_button_settings_show_preview_similar_images.clone();
 
                     // tree_view.connect_button_press_event(opening_double_click_function);
-                    let text_view_errors = gui_data.text_view_errors.clone();
+                    let _text_view_errors = gui_data.text_view_errors.clone();
                     // tree_view.connect_button_release_event(move |tree_view, _event| {
                     //     let nb_object = &NOTEBOOKS_INFOS[NotebookMainEnum::SimilarImages as usize];
                     //     show_preview(

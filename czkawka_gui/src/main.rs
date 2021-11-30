@@ -4,7 +4,7 @@
 #![allow(clippy::too_many_arguments)]
 
 use gtk4::prelude::*;
-use gtk4::prelude::*;
+
 use gtk4::Inhibit;
 
 use czkawka_core::*;

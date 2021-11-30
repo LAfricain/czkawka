@@ -1,6 +1,6 @@
 use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
 
 use czkawka_core::similar_images::SIMILAR_VALUES;
 

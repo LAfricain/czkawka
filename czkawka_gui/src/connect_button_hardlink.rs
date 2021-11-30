@@ -2,8 +2,8 @@ use std::fs;
 use std::path::PathBuf;
 
 use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
 use gtk4::{TextView, TreeIter, TreePath};
 
 use czkawka_core::duplicate::make_hard_link;

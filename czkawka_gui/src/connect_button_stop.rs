@@ -1,10 +1,10 @@
-use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
+
 
 use crate::gui_data::GuiData;
 
-pub fn connect_button_stop(gui_data: &GuiData) {
+pub fn connect_button_stop(_gui_data: &GuiData) {
     // let button_stop_in_dialog = gui_data.progress_window.button_stop_in_dialog.clone();
     // let stop_sender = gui_data.stop_sender.clone();
     // button_stop_in_dialog.connect_key_release_event(move |_, e| {

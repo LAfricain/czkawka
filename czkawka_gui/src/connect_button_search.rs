@@ -4,8 +4,8 @@ use std::thread;
 
 use glib::Sender;
 use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
 use img_hash::{FilterType, HashAlg};
 
 use czkawka_core::big_file::BigFile;

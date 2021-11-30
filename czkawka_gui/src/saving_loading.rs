@@ -5,8 +5,8 @@ use std::{env, fs};
 
 use directories_next::ProjectDirs;
 use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
 use gtk4::{ScrolledWindow, TextView};
 
 use crate::gui_settings::GuiSettings;

@@ -6,8 +6,8 @@ use std::rc::Rc;
 use chrono::NaiveDateTime;
 use glib::Receiver;
 use gtk4::prelude::*;
-use gtk4::prelude::*;
-use gtk4::Inhibit;
+
+
 use humansize::{file_size_opts as options, FileSize};
 
 use czkawka_core::duplicate::CheckingMethod;
