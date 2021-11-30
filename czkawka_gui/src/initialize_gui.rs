@@ -112,13 +112,13 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                     let check_button_settings_show_preview_duplicates = gui_data.settings.check_button_settings_show_preview_duplicates.clone();
                     let image_preview_duplicates = gui_data.main_notebook.image_preview_duplicates.clone();
 
-                    tree_view.connect_button_press_event(opening_double_click_function);
-                    tree_view.connect_button_release_event(move |tree_view, _event| {
-                        let nb_object = &NOTEBOOKS_INFOS[NotebookMainEnum::Duplicate as usize];
-                        show_preview(tree_view, &text_view_errors, &check_button_settings_show_preview_duplicates, &image_preview_duplicates, nb_object.column_path, nb_object.column_name);
-
-                        gtk4::Inhibit(false)
-                    });
+                    // tree_view.connect_button_press_event(opening_double_click_function);
+                    // tree_view.connect_button_release_event(move |tree_view, _event| {
+                    //     let nb_object = &NOTEBOOKS_INFOS[NotebookMainEnum::Duplicate as usize];
+                    //     show_preview(tree_view, &text_view_errors, &check_button_settings_show_preview_duplicates, &image_preview_duplicates, nb_object.column_path, nb_object.column_name);
+                    //
+                    //     gtk4::Inhibit(false)
+                    // });
                 }
                 tree_view.set_widget_name("tree_view_duplicate_finder");
                 gui_data.main_notebook.tree_view_duplicate_finder = tree_view.clone();
@@ -142,7 +142,7 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
 
                 gui_data.main_notebook.evk_tree_view_empty_folder_finder = evk;
 
-                tree_view.connect_button_press_event(opening_double_click_function);
+                // tree_view.connect_button_press_event(opening_double_click_function);
 
                 tree_view.set_widget_name("tree_view_empty_folder_finder");
                 gui_data.main_notebook.tree_view_empty_folder_finder = tree_view.clone();
@@ -165,7 +165,7 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                 evk.connect_key_pressed(opening_enter_function_ported);
                 gui_data.main_notebook.evk_tree_view_empty_files_finder = evk;
 
-                tree_view.connect_button_press_event(opening_double_click_function);
+                // tree_view.connect_button_press_event(opening_double_click_function);
 
                 tree_view.set_widget_name("tree_view_empty_files_finder");
                 gui_data.main_notebook.tree_view_empty_files_finder = tree_view.clone();
@@ -188,7 +188,7 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                 evk.connect_key_pressed(opening_enter_function_ported);
                 gui_data.main_notebook.evk_tree_view_temporary_files_finder = evk;
 
-                tree_view.connect_button_press_event(opening_double_click_function);
+                // tree_view.connect_button_press_event(opening_double_click_function);
 
                 tree_view.set_widget_name("tree_view_temporary_files_finder");
                 gui_data.main_notebook.tree_view_temporary_files_finder = tree_view.clone();
@@ -211,7 +211,7 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                 evk.connect_key_pressed(opening_enter_function_ported);
                 gui_data.main_notebook.evk_tree_view_big_files_finder = evk;
 
-                tree_view.connect_button_press_event(opening_double_click_function);
+                // tree_view.connect_button_press_event(opening_double_click_function);
 
                 tree_view.set_widget_name("tree_view_big_files_finder");
                 gui_data.main_notebook.tree_view_big_files_finder = tree_view.clone();
@@ -257,20 +257,20 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                     // Other connects
                     let check_button_settings_show_preview_similar_images = gui_data.settings.check_button_settings_show_preview_similar_images.clone();
 
-                    tree_view.connect_button_press_event(opening_double_click_function);
+                    // tree_view.connect_button_press_event(opening_double_click_function);
                     let text_view_errors = gui_data.text_view_errors.clone();
-                    tree_view.connect_button_release_event(move |tree_view, _event| {
-                        let nb_object = &NOTEBOOKS_INFOS[NotebookMainEnum::SimilarImages as usize];
-                        show_preview(
-                            tree_view,
-                            &text_view_errors,
-                            &check_button_settings_show_preview_similar_images,
-                            &image_preview_similar_images,
-                            nb_object.column_path,
-                            nb_object.column_name,
-                        );
-                        gtk4::Inhibit(false)
-                    });
+                    // tree_view.connect_button_release_event(move |tree_view, _event| {
+                    //     let nb_object = &NOTEBOOKS_INFOS[NotebookMainEnum::SimilarImages as usize];
+                    //     show_preview(
+                    //         tree_view,
+                    //         &text_view_errors,
+                    //         &check_button_settings_show_preview_similar_images,
+                    //         &image_preview_similar_images,
+                    //         nb_object.column_path,
+                    //         nb_object.column_name,
+                    //     );
+                    //     gtk4::Inhibit(false)
+                    // });
                 }
 
                 tree_view.set_widget_name("tree_view_similar_images_finder");
@@ -306,7 +306,7 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                 evk.connect_key_pressed(opening_enter_function_ported);
                 gui_data.main_notebook.evk_tree_view_similar_videos_finder = evk;
 
-                tree_view.connect_button_press_event(opening_double_click_function);
+                // tree_view.connect_button_press_event(opening_double_click_function);
 
                 tree_view.set_widget_name("tree_view_similar_videos_finder");
                 gui_data.main_notebook.tree_view_similar_videos_finder = tree_view.clone();
@@ -346,7 +346,7 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                 evk.connect_key_pressed(opening_enter_function_ported);
                 gui_data.main_notebook.evk_tree_view_same_music_finder = evk;
 
-                tree_view.connect_button_press_event(opening_double_click_function);
+                // tree_view.connect_button_press_event(opening_double_click_function);
 
                 tree_view.set_widget_name("tree_view_same_music_finder");
                 gui_data.main_notebook.tree_view_same_music_finder = tree_view.clone();
@@ -376,7 +376,7 @@ pub fn initialize_gui(gui_data: &mut GuiData) {
                 evk.connect_key_pressed(opening_enter_function_ported);
                 gui_data.main_notebook.evk_tree_view_invalid_symlinks = evk;
 
-                tree_view.connect_button_press_event(opening_double_click_function);
+                // tree_view.connect_button_press_event(opening_double_click_function);
 
                 tree_view.set_widget_name("tree_view_invalid_symlinks");
                 gui_data.main_notebook.tree_view_invalid_symlinks = tree_view.clone();

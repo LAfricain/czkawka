@@ -10,7 +10,7 @@ repository = "https://github.com/qarmin/czkawka"
 
 [dependencies]
 czkawka_core = { path = "../czkawka_core" }
-gdk = "0.14.3"
+gdk4 = "0.3.1"
 glib = "0.14.8"
 
 humansize = "1.1.1"

@@ -2,11 +2,13 @@ use crate::help_functions::*;
 use gdk::ModifierType;
 use gtk4::prelude::*;
 use gtk4::prelude::*;
-use gtk4::Inhibit;
+use gtk4::{gdk, Inhibit};
 
 // TODO add option to open files and folders from context menu activated by pressing ONCE with right mouse button
 
-pub fn opening_enter_function_ported(event_controller: &gtk4::EventControllerKey, _key_value: u32, key_code: u32, _modifier_type: ModifierType) {
+pub fn opening_enter_function_ported2(event_controller: &gtk4::EventControllerKey, key: gdk4::keys::Key, _modifier_type: ModifierType) {}
+
+pub fn opening_enter_function_ported(event_controller: &gtk4::EventControllerKey, key: gdk4::keys::Key, key_code: u32, _modifier_type: ModifierType) -> gtk4::Inhibit {
     let tree_view = event_controller.widget().unwrap().downcast::<gtk4::TreeView>().unwrap();
     #[cfg(debug_assertions)]
     {
@@ -15,17 +17,17 @@ pub fn opening_enter_function_ported(event_controller: &gtk4::EventControllerKey
 
     let nt_object = get_notebook_object_from_tree_view(&tree_view);
     handle_tree_keypress(&tree_view, key_code, nt_object.column_name, nt_object.column_path, nt_object.column_selection);
-    //false // True catches signal, and don't send it to function, e.g. up button is catched and don't move selection
+    Inhibit(false) // True catches signal, and don't send it to function, e.g. up button is catched and don't move selection
 }
-pub fn opening_double_click_function(tree_view: &gtk4::TreeView, event: &gdk::EventButton) -> gtk4::Inhibit {
-    let nt_object = get_notebook_object_from_tree_view(tree_view);
-    if event.event_type() == gdk::EventType::DoubleButtonPress && event.button() == 1 {
-        common_open_function(tree_view, nt_object.column_name, nt_object.column_path, OpenMode::PathAndName);
-    } else if event.event_type() == gdk::EventType::DoubleButtonPress && event.button() == 3 {
-        common_open_function(tree_view, nt_object.column_name, nt_object.column_path, OpenMode::OnlyPath);
-    }
-    gtk4::Inhibit(false)
-}
+// pub fn opening_double_click_function(tree_view: &gtk4::TreeView, event: &gdk::EventButton) -> gtk4::Inhibit {
+//     // let nt_object = get_notebook_object_from_tree_view(tree_view);
+//     // if event.event_type() == gdk::EventType::DoubleButtonPress && event.button() == 1 {
+//     //     common_open_function(tree_view, nt_object.column_name, nt_object.column_path, OpenMode::PathAndName);
+//     // } else if event.event_type() == gdk::EventType::DoubleButtonPress && event.button() == 3 {
+//     //     common_open_function(tree_view, nt_object.column_name, nt_object.column_path, OpenMode::OnlyPath);
+//     // }
+//     gtk4::Inhibit(false)
+// }
 
 enum OpenMode {
     OnlyPath,

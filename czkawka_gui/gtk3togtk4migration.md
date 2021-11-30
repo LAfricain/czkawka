@@ -1,17 +1,29 @@
 # Errors
 
 `resize` is missing, xlib is required now(not sure about api) - TODO I used this for fitting window size to content, maybe similar method exists?  
-`children` dialog no longer returns children of Notebook
-`set_relative_to` is missing in Popup  
-`connect_clicked` missing on CheckButton  
-`connect_key_release_event` and `connect_button_release_event` missing
-`join_group` -> `set_group`
+`children` dialog no longer returns children of Notebook  
+`set_relative_to` is missing in Popup    
+`connect_clicked` missing on CheckButton    
+`connect_key_release_event` and `connect_button_release_event` missing  
+`join_group` -> `set_group`  
 
-`connect_clicked` to e.g. `connect_move_focus`
-`opening_enter_function_ported` - remove here a bool return value
-`connect_button_press_event` missing
-`add` change to `set_child(Some())`
+`connect_clicked` to e.g. `connect_move_focus`  
+`opening_enter_function_ported` - have different name  
+`connect_button_press_event` missing  
+`add` change to `set_child(Some())`  
+`gdk::EventType::DoubleButtonPress` missing  
 
+`\n[^\n]+shadow-type[^\n]+\n`  
+`\n[^\n]+caps-lock-warning[^\n]+\n`  
+`\n[^\n]+resize-mode[^\n]+\n`  
+`\n[^\n]+window-position[^\n]+\n`  
+`\n[^\n]+type-hint[^\n]+\n`  
+`\n[^\n]+layout-style[^\n]+\n`  
+`\n[^\n]+action_area[^\n]+\n`  
+`\n[^\n]+layout-style[^\n]+\n`  
+
+` internal-child="vbox"` - remove this  
+` internal-child="action_area"`
 ## Remove
 `use gtk4::WindowPosition;`
 `[a-zA-Z_]+.set_position\(WindowPosition::Center\);`

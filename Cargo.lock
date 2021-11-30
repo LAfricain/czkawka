@@ -485,7 +485,7 @@ dependencies = [
  "directories-next",
  "fs_extra",
  "futures",
- "gdk",
+ "gdk4",
  "glib",
  "gtk4",
  "humansize",
@@ -725,22 +725,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gdk"
-version = "0.14.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b9d749dcfc00d8de0d7c3a289e04a04293eb5ba3d8a4e64d64911d481fa9933b"
-dependencies = [
- "bitflags",
- "cairo-rs",
- "gdk-pixbuf",
- "gdk-sys",
- "gio",
- "glib",
- "libc",
- "pango",
-]
-
-[[package]]
 name = "gdk-pixbuf"
 version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -762,23 +746,6 @@ dependencies = [
  "glib-sys",
  "gobject-sys",
  "libc",
- "system-deps 3.2.0",
-]
-
-[[package]]
-name = "gdk-sys"
-version = "0.14.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0e091b3d3d6696949ac3b3fb3c62090e5bfd7bd6850bef5c3c5ea701de1b1f1e"
-dependencies = [
- "cairo-sys-rs",
- "gdk-pixbuf-sys",
- "gio-sys",
- "glib-sys",
- "gobject-sys",
- "libc",
- "pango-sys",
- "pkg-config",
  "system-deps 3.2.0",
 ]
 
